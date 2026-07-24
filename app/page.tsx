@@ -41,33 +41,17 @@ const services = [
 
 function CreatorFigure({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={compact ? "creator-figure is-compact" : "creator-figure"} aria-hidden="true">
+    <div className={compact ? "creator-figure is-compact" : "creator-figure"}>
       <span className="figure-aura" />
-      <span className="figure-hair-back" />
-      <span className="figure-ear figure-ear-left" />
-      <span className="figure-ear figure-ear-right" />
-      <span className="figure-face">
-        <i className="figure-hair-front" />
-        <i className="figure-brow figure-brow-left" />
-        <i className="figure-brow figure-brow-right" />
-        <i className="figure-eye figure-eye-left" />
-        <i className="figure-eye figure-eye-right" />
-        <i className="figure-nose" />
-        <i className="figure-mouth" />
-        <i className="figure-glasses figure-glasses-left" />
-        <i className="figure-glasses figure-glasses-right" />
-        <i className="figure-glasses-bridge" />
-      </span>
-      <span className="figure-neck" />
-      <span className="figure-body">
-        <i className="figure-shirt">H</i>
-        <i className="figure-lapel figure-lapel-left" />
-        <i className="figure-lapel figure-lapel-right" />
-      </span>
-      <span className="figure-arm figure-arm-left" />
-      <span className="figure-arm figure-arm-right" />
-      <span className="figure-hand figure-hand-left">✦</span>
-      <span className="figure-hand figure-hand-right">+</span>
+      <div className="figure-photo-frame">
+        <img
+          className="figure-photo"
+          src="/hoang-character-transparent-v5.png"
+          alt={compact ? "Illustrated character of Hoang in motion" : "Hoang, independent creative developer, illustrated as a character in motion"}
+        />
+      </div>
+      <span className="figure-photo-note">CHARACTER 01 / 2026</span>
+      <span className="figure-photo-cross" aria-hidden="true">+</span>
     </div>
   );
 }
