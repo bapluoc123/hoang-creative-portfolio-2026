@@ -1,0 +1,15 @@
+AGENTS.md
+CONTINUE_NEXT_WEEK.md
+.openai/
+.wrangler/
+build/
+dist/
+work/
+outputs/
+db/
+drizzle/
+worker/
+examples/
+tests/
+vite.config.ts
+drizzle.config.ts

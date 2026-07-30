@@ -1,0 +1,326 @@
+.archive-cover {
+  height: 100%;
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.gallery-card-visual .archive-cover img {
+  display: block;
+  filter: none;
+  height: auto;
+  max-width: none;
+  object-fit: cover;
+  position: absolute;
+  transition: transform .8s cubic-bezier(.22, 1, .36, 1), filter .5s ease;
+  width: auto;
+}
+
+.archive-cover-bg {
+  height: 100% !important;
+  inset: 0;
+  width: 100% !important;
+  z-index: 0;
+}
+
+.archive-cover-word {
+  font-family: var(--font-display-serif), Georgia, serif;
+  font-weight: 800;
+  letter-spacing: -.07em;
+  line-height: .8;
+  position: absolute;
+  z-index: 2;
+}
+
+.archive-cover-elihigh {
+  background: #c8ecf7;
+}
+
+.archive-cover-elihigh::after {
+  background: linear-gradient(135deg, rgb(89 205 239 / 82%), rgb(104 95 220 / 72%));
+  clip-path: polygon(0 36%, 100% 3%, 100% 76%, 0 100%);
+  content: "";
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.archive-cover-elihigh .archive-cover-bg {
+  filter: saturate(1.08);
+  opacity: .58;
+}
+
+.archive-cover-elihigh .archive-cover-word {
+  color: rgb(255 255 255 / 70%);
+  font-size: clamp(3.2rem, 7vw, 7rem);
+  left: 2%;
+  top: 8%;
+  transform: rotate(-8deg);
+}
+
+.archive-cover-panel {
+  background: white;
+  border: clamp(3px, .45vw, 7px) solid white;
+  border-radius: clamp(.4rem, 1vw, 1rem);
+  box-shadow: 0 1.4rem 3rem rgb(25 44 73 / 26%);
+  height: 78% !important;
+  object-fit: contain !important;
+  top: 12%;
+  width: 43% !important;
+  z-index: 3;
+}
+
+.archive-cover-panel-a {
+  left: 15%;
+  transform: rotate(-6deg);
+}
+
+.archive-cover-panel-b {
+  right: -5%;
+  transform: rotate(7deg);
+}
+
+.archive-cover-mascot {
+  object-fit: contain !important;
+  width: 24% !important;
+  z-index: 4;
+}
+
+.archive-cover-mascot-a {
+  bottom: -4%;
+  left: -3%;
+}
+
+.archive-cover-mascot-b {
+  right: 2%;
+  top: -4%;
+  transform: rotate(8deg);
+}
+
+.archive-cover-character {
+  background: #182a20;
+}
+
+.archive-cover-character .archive-cover-bg {
+  filter: brightness(.62) saturate(.8);
+}
+
+.archive-cover-character::after {
+  background: linear-gradient(90deg, rgb(16 26 21 / 82%), transparent 46%, rgb(16 26 21 / 58%));
+  content: "";
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.archive-cover-character .archive-cover-word {
+  bottom: 3%;
+  color: rgb(255 236 197 / 16%);
+  font-size: clamp(4rem, 10vw, 10rem);
+  left: -2%;
+}
+
+.archive-cover-sheet {
+  background: #f5f0e7;
+  border: 3px solid rgb(255 255 255 / 70%);
+  box-shadow: 0 1.2rem 2.8rem rgb(0 0 0 / 38%);
+  height: 76% !important;
+  object-fit: contain !important;
+  top: 11%;
+  width: 31% !important;
+  z-index: 3;
+}
+
+.archive-cover-sheet-a {
+  left: 2%;
+  transform: rotate(-5deg);
+}
+
+.archive-cover-sheet-b {
+  left: 34.5%;
+  transform: rotate(2deg);
+}
+
+.archive-cover-sheet-c {
+  right: 2%;
+  transform: rotate(6deg);
+}
+
+.archive-cover-illustration {
+  background: #f1d7c9;
+}
+
+.archive-cover-illustration .archive-cover-bg {
+  filter: saturate(.9);
+}
+
+.archive-cover-ink {
+  background: linear-gradient(135deg, rgb(31 51 74 / 12%), rgb(255 245 228 / 66%));
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.archive-cover-art {
+  background: #fffaf0;
+  border: 3px solid #fffaf0;
+  box-shadow: 0 1.3rem 3rem rgb(35 35 48 / 28%);
+  object-fit: cover !important;
+  z-index: 3;
+}
+
+.archive-cover-art-a {
+  height: 88% !important;
+  left: -4%;
+  top: 8%;
+  transform: rotate(-6deg);
+  width: 44% !important;
+}
+
+.archive-cover-art-b {
+  height: 66% !important;
+  left: 37%;
+  top: -5%;
+  transform: rotate(5deg);
+  width: 32% !important;
+}
+
+.archive-cover-art-c {
+  bottom: -8%;
+  height: 72% !important;
+  right: -2%;
+  transform: rotate(-4deg);
+  width: 38% !important;
+}
+
+.archive-cover-kids-game {
+  background: #ff80bf;
+}
+
+.archive-cover-kids-game .archive-cover-bg {
+  filter: saturate(1.12);
+}
+
+.archive-cover-kids-game::after {
+  background: linear-gradient(90deg, rgb(83 41 140 / 42%), transparent 55%);
+  content: "";
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.archive-cover-kids-game .archive-cover-word {
+  color: #fff35e;
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  left: 3%;
+  text-shadow: 0 .3rem 0 rgb(101 50 157 / 54%);
+  top: 7%;
+  transform: rotate(-6deg);
+}
+
+.archive-cover-prop {
+  bottom: -12%;
+  height: 88% !important;
+  left: -4%;
+  object-fit: contain !important;
+  transform: rotate(-12deg);
+  width: 46% !important;
+  z-index: 3;
+}
+
+.archive-cover-game {
+  background: white;
+  border: 3px solid white;
+  border-radius: .45rem;
+  box-shadow: 0 1.4rem 3rem rgb(53 24 80 / 30%);
+  height: 76% !important;
+  object-fit: contain !important;
+  top: 13%;
+  width: 32% !important;
+  z-index: 4;
+}
+
+.archive-cover-game-a {
+  left: 42%;
+  transform: rotate(-4deg);
+}
+
+.archive-cover-game-b {
+  right: -3%;
+  transform: rotate(7deg);
+}
+
+.archive-cover-story {
+  background:
+    linear-gradient(90deg, transparent 49.8%, rgb(28 28 28 / 12%) 50%, transparent 50.2%),
+    #eee9df;
+}
+
+.archive-cover-story .archive-cover-word {
+  color: rgb(25 25 25 / 22%);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: clamp(.9rem, 1.8vw, 1.8rem);
+  left: 4%;
+  letter-spacing: .12em;
+  top: 5%;
+}
+
+.archive-cover-storyboard {
+  border: 4px solid #171717;
+  box-shadow: 0 1.2rem 2.5rem rgb(0 0 0 / 24%);
+  height: 38% !important;
+  object-fit: cover !important;
+  width: 49% !important;
+  z-index: 2;
+}
+
+.archive-cover-storyboard-a {
+  left: -3%;
+  top: 20%;
+  transform: rotate(-4deg);
+}
+
+.archive-cover-storyboard-b {
+  right: -4%;
+  top: 8%;
+  transform: rotate(5deg);
+}
+
+.archive-cover-book {
+  box-shadow: 0 1.4rem 3rem rgb(35 45 62 / 30%);
+  height: 49% !important;
+  object-fit: cover !important;
+  width: 42% !important;
+  z-index: 4;
+}
+
+.archive-cover-book-a {
+  bottom: -5%;
+  left: 13%;
+  transform: rotate(7deg);
+}
+
+.archive-cover-book-b {
+  bottom: -8%;
+  right: 5%;
+  transform: rotate(-5deg);
+}
+
+.gallery-card.is-linked:hover .archive-cover-panel-a,
+.gallery-card.is-linked:hover .archive-cover-sheet-a,
+.gallery-card.is-linked:hover .archive-cover-art-a {
+  filter: none;
+  transform: rotate(-8deg) translateY(-2%);
+}
+
+.gallery-card.is-linked:hover .archive-cover-panel-b,
+.gallery-card.is-linked:hover .archive-cover-sheet-c,
+.gallery-card.is-linked:hover .archive-cover-game-b {
+  filter: none;
+  transform: rotate(9deg) translateY(-2%);
+}
+
+.gallery-card.is-linked:hover .archive-cover-bg {
+  transform: scale(1.03);
+}

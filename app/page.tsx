@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ProjectCard } from "./project-card";
+import { AuroradotCardCover, MoodCardCover, ProjectCard } from "./project-card";
 import { allProjects, featuredProjects } from "./project-data";
+
+const archiveProjects = allProjects.filter((project) => !project.featured);
 
 const experiences = [
   ["2025 — NAY", "COQNIT PTE. LTD.", "2D Artist / UI Designer", "Singapore"],
@@ -19,7 +21,7 @@ const education = [
   ["2017 — 2019", "PIGWORKSHOP", "Concept Art & Sketching"],
 ];
 
-const services = [
+const services: Array<[string, string, string, string[]]> = [
   ["01", "UI/UX Design", "User flow, wireframe, prototype và giao diện mobile/web rõ ràng, dễ sử dụng.", ["USER FLOW", "WIREFRAME", "PROTOTYPE", "MOBILE / WEB UI"]],
   ["02", "Design System", "Xây dựng foundation, component và quy tắc giúp sản phẩm mở rộng nhất quán.", ["DESIGN TOKEN", "COMPONENT", "VARIANT & STATE", "DOCUMENTATION"]],
   ["03", "2D Game Art", "Nhân vật, bối cảnh, game UI, icon và visual asset cho sản phẩm số.", ["CHARACTER DESIGN", "ENVIRONMENT ART", "GAME UI", "ICON & ASSET"]],
@@ -64,6 +66,7 @@ export default function Home() {
     const onPointerMove = (event: PointerEvent) => {
       pointerX = event.clientX;
       pointerY = event.clientY;
+      if (cursor) cursor.style.opacity = "1";
       const hovered = (event.target as Element | null)?.closest<HTMLElement>(
         "a, button, .work-card[data-cursor], .service-row",
       );
@@ -194,6 +197,7 @@ export default function Home() {
       observer.disconnect();
       root.style.removeProperty("--pointer-x");
       root.style.removeProperty("--pointer-y");
+      cursor?.style.removeProperty("opacity");
     };
   }, []);
 
@@ -205,7 +209,7 @@ export default function Home() {
         <div className="intro-mark">H<span>+</span></div>
         <p>MAKING IDEAS MOVE</p>
       </div>
-      <div className="cursor" aria-hidden="true"><span className="cursor-label" /></div>
+      <div className="cursor" style={{ opacity: 1 }} aria-hidden="true"><span className="cursor-label" /></div>
       <div className="scroll-progress" aria-hidden="true" />
 
       <header className={scrolled ? "site-header is-scrolled" : "site-header"}>
@@ -329,8 +333,17 @@ export default function Home() {
         </div>
 
         <div className="mission-body">
-          <div className="mission-figure reveal">
-            <CreatorFigure compact />
+          <div className="mission-figure mission-figure-original reveal">
+            <div className="mission-character-rig" role="img" aria-label="Nhân vật kiếm sĩ do Huy Hoàng minh họa">
+              <img className="mission-rig-base" src="/mission-character-rig-base.png" alt="" />
+              {(["left-hand", "sword-arm", "left-leg", "right-leg"] as const).map((part) => (
+                <span className={`mission-rig-part mission-rig-part-${part}`} key={part}>
+                  <img className="mission-rig-cover" src={`/mission-rig-${part}-cover.png`} alt="" />
+                  <img className="mission-rig-moving" src={`/mission-rig-${part}.png`} alt="" />
+                </span>
+              ))}
+            </div>
+            <span className="mission-character-label">NHÂN VẬT 01 / 2026</span>
           </div>
           <div className="mission-copy reveal">
             <p>
@@ -364,7 +377,19 @@ export default function Home() {
 
         <div className="work-list">
           {featuredProjects.map((project) => {
-            const visual = (
+            const visual = project.title === "MOOD" ? (
+              <div className="work-visual mood-work-visual">
+                <MoodCardCover />
+                <span className="work-index">{project.number}</span>
+                <span className="work-stamp">{project.stamp}</span>
+              </div>
+            ) : project.title === "AURORADOT" ? (
+              <div className="work-visual auroradot-work-visual">
+                <AuroradotCardCover />
+                <span className="work-index">{project.number}</span>
+                <span className="work-stamp">{project.stamp}</span>
+              </div>
+            ) : (
               <div className="work-visual" style={{ backgroundImage: `url("${project.image}")` }}>
                 <div className="work-visual-grid" />
                 <span className="work-index">{project.number}</span>
@@ -420,7 +445,7 @@ export default function Home() {
         <div className="home-project-gallery reveal">
           <div className="home-project-gallery-heading">
             <div>
-              <span>MORE WORK / {String(allProjects.length).padStart(2, "0")}</span>
+              <span>MORE WORK / {String(archiveProjects.length).padStart(2, "0")}</span>
               <h3>Browse the<br /><em>visual archive.</em></h3>
             </div>
             <p>
@@ -430,7 +455,7 @@ export default function Home() {
           </div>
 
           <div className="project-gallery-grid">
-            {allProjects.slice(3, 9).map((project) => (
+            {archiveProjects.slice(0, 6).map((project) => (
               <ProjectCard key={project.number} project={project} />
             ))}
           </div>
@@ -464,9 +489,9 @@ export default function Home() {
           ))}
         </div>
         <div className="skill-strip reveal" aria-label="Kỹ năng và công cụ">
-          <div className="skill-track">
-            {[0, 1].map((group) => (
-              <div className="skill-group" aria-hidden={group === 1} key={group}>
+          <div className="skill-track" style={{ animationDuration: "112s" }}>
+            {Array.from({ length: 8 }, (_, group) => (
+              <div className="skill-group" aria-hidden={group !== 0} key={group}>
                 {["FIGMA", "PHOTOSHOP", "ILLUSTRATOR", "PROCREATE", "AFTER EFFECTS", "DESIGN SYSTEM"].map((skill) => (
                   <span key={`${group}-${skill}`}>{skill}</span>
                 ))}

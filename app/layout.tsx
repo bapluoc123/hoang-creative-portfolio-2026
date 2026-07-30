@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
-import { Be_Vietnam_Pro, Geist_Mono, Noto_Serif } from "next/font/google";
+import { Be_Vietnam_Pro, Noto_Serif, Roboto_Mono } from "next/font/google";
 import { headers } from "next/headers";
 import "./globals.css";
+import "./auroradot-cover.css";
+import "./project-covers.css";
+import "./mission-character.css";
+import "./header-layout.css";
+import "./font-system.css";
+import "./typography-fixes.css";
+import "./elihigh-mascots.css";
 
 const beVietnamPro = Be_Vietnam_Pro({
   variable: "--font-be-vietnam-pro",
@@ -9,14 +16,14 @@ const beVietnamPro = Be_Vietnam_Pro({
   subsets: ["latin", "latin-ext"],
 });
 
-const geistMono = Geist_Mono({
+const interfaceMono = Roboto_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin", "latin-ext"],
+  subsets: ["latin", "latin-ext", "vietnamese"],
 });
 
 const notoSerif = Noto_Serif({
   variable: "--font-display-serif",
-  weight: ["400", "500", "600", "700", "900"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
   subsets: ["latin", "latin-ext", "vietnamese"],
 });
@@ -60,7 +67,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body className={`${beVietnamPro.variable} ${geistMono.variable} ${notoSerif.variable}`}>{children}</body>
+      <body className={`${beVietnamPro.variable} ${interfaceMono.variable} ${notoSerif.variable}`}>{children}</body>
     </html>
   );
 }

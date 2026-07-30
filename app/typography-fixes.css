@@ -1,0 +1,133 @@
+/*
+ * Visual typography pass:
+ * protect Vietnamese diacritics, prevent narrow orphan columns,
+ * and reserve space for captions that sit below image frames.
+ */
+:where(.mood-case, .aurora-case, .fix-case, .abeeci-case, .collection-case) h1 {
+  line-height: .9;
+  text-wrap: balance;
+}
+
+:where(.mood-case, .aurora-case, .fix-case, .abeeci-case, .collection-case) :is(h2, h3) {
+  line-height: 1;
+  text-wrap: balance;
+}
+
+:where(.mood-case, .aurora-case, .fix-case, .abeeci-case, .collection-case) p {
+  text-wrap: pretty;
+}
+
+.mood-strategy-grid h3 {
+  font-size: clamp(1.55rem, 2.3vw, 2.65rem);
+  letter-spacing: -.03em;
+}
+
+.mood-feature-copy h3 {
+  font-size: clamp(2.5rem, 4.2vw, 5rem);
+  letter-spacing: -.04em;
+}
+
+.collection-chapter-heading h3 {
+  font-size: clamp(3.2rem, 6vw, 7rem);
+  letter-spacing: -.05em;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.elihigh-design-bridge h3 {
+  font-size: clamp(3.2rem, 5.8vw, 7rem);
+  letter-spacing: -.045em;
+  line-height: 1.04;
+  max-width: 22ch;
+}
+
+.aurora-phone-pair {
+  padding-bottom: clamp(8rem, 11vw, 11rem);
+}
+
+.aurora-chapter {
+  grid-template-columns:
+    minmax(8rem, .45fr)
+    minmax(0, 1.4fr)
+    minmax(15rem, .65fr);
+}
+
+.aurora-chapter h2 {
+  min-width: 0;
+}
+
+.aurora-chapter > p {
+  min-width: 15rem;
+  width: 100%;
+}
+
+.aurora-chapter-illustration h2 {
+  font-size: clamp(4.5rem, 10vw, 11rem);
+  grid-column: 1 / -1;
+  grid-row: 2;
+  letter-spacing: -.065em;
+  line-height: .9;
+  white-space: nowrap;
+}
+
+.aurora-chapter-illustration {
+  align-items: start;
+  grid-template-columns: minmax(10rem, .4fr) minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+}
+
+.aurora-chapter-illustration > div {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.aurora-chapter-illustration > p {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  max-width: 29rem;
+  min-width: 0;
+}
+
+@media (max-width: 760px) {
+  .elihigh-design-bridge h3 {
+    font-size: clamp(2.8rem, 12vw, 4.4rem);
+    line-height: 1.08;
+    max-width: 100%;
+  }
+
+  .aurora-phone-pair {
+    padding-bottom: 5.5rem;
+  }
+
+  .aurora-chapter {
+    grid-template-columns: 1fr;
+  }
+
+  .aurora-chapter > p {
+    min-width: 0;
+  }
+
+  .aurora-chapter-illustration h2 {
+    font-size: clamp(2.5rem, 10.8vw, 3.5rem);
+    grid-column: 1;
+    grid-row: auto;
+    white-space: nowrap;
+  }
+
+  .aurora-chapter-illustration {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .aurora-chapter-illustration > div,
+  .aurora-chapter-illustration > p {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+  }
+
+  .collection-chapter-heading h3 {
+    font-size: clamp(2.6rem, 11vw, 3.5rem);
+  }
+}

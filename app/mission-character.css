@@ -1,0 +1,179 @@
+.mission {
+  background: #fff;
+}
+
+.mission-figure-original {
+  height: clamp(34rem, 49vw, 43rem);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.mission-character-rig {
+  animation: mission-character-breathe 5.8s ease-in-out infinite;
+  aspect-ratio: 1392 / 1897;
+  height: 125%;
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  top: -9%;
+  transform: translateX(-34%);
+  transform-origin: 38% 78%;
+  will-change: transform;
+  width: auto;
+  z-index: 1;
+}
+
+.mission-character-rig img {
+  display: block;
+  height: 100%;
+  inset: 0;
+  object-fit: contain;
+  position: absolute;
+  width: 100%;
+}
+
+.mission-rig-base {
+  z-index: 1;
+}
+
+.mission-rig-part {
+  inset: 0;
+  position: absolute;
+  transform: translateZ(0);
+}
+
+.mission-rig-cover {
+  z-index: 2;
+}
+
+.mission-rig-moving {
+  transform-origin: var(--rig-origin);
+  z-index: 3;
+}
+
+.mission-rig-part-left-hand {
+  --rig-origin: 29% 40%;
+}
+
+.mission-rig-part-left-hand .mission-rig-moving {
+  animation: mission-left-hand 3.6s ease-in-out infinite;
+}
+
+.mission-rig-part-sword-arm {
+  --rig-origin: 56% 47%;
+}
+
+.mission-rig-part-sword-arm .mission-rig-moving {
+  animation: mission-sword-arm 4.4s ease-in-out infinite;
+}
+
+.mission-rig-part-left-leg {
+  --rig-origin: 39% 66%;
+}
+
+.mission-rig-part-left-leg .mission-rig-moving {
+  animation: mission-left-leg 4.8s ease-in-out infinite;
+}
+
+.mission-rig-part-right-leg {
+  --rig-origin: 51% 66%;
+}
+
+.mission-rig-part-right-leg .mission-rig-moving {
+  animation: mission-right-leg 4.8s ease-in-out infinite;
+}
+
+.mission-character-label {
+  background: var(--ink);
+  bottom: 1.25rem;
+  color: var(--paper);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: .68rem;
+  font-weight: 700;
+  left: 1rem;
+  letter-spacing: .11em;
+  padding: .65rem .9rem;
+  position: absolute;
+  transform: rotate(-1.5deg);
+  z-index: 3;
+}
+
+@keyframes mission-character-breathe {
+  0%,
+  100% {
+    transform: translateX(-34%) translateY(0) rotate(-.25deg);
+  }
+
+  48% {
+    transform: translateX(-34%) translateY(-8px) rotate(.35deg);
+  }
+
+  72% {
+    transform: translateX(-34%) translateY(-4px) rotate(0deg);
+  }
+}
+
+@keyframes mission-left-hand {
+  0%,
+  100% {
+    transform: rotate(-.35deg);
+  }
+
+  50% {
+    transform: rotate(1.1deg) translateY(-1px);
+  }
+}
+
+@keyframes mission-sword-arm {
+  0%,
+  100% {
+    transform: rotate(-.28deg);
+  }
+
+  50% {
+    transform: rotate(.55deg) translateY(-1px);
+  }
+}
+
+@keyframes mission-left-leg {
+  0%,
+  100% {
+    transform: rotate(.2deg);
+  }
+
+  50% {
+    transform: rotate(-.6deg) translateY(-1px);
+  }
+}
+
+@keyframes mission-right-leg {
+  0%,
+  100% {
+    transform: rotate(-.15deg);
+  }
+
+  50% {
+    transform: rotate(.5deg) translateY(1px);
+  }
+}
+
+@media (max-width: 720px) {
+  .mission-figure-original {
+    height: 34rem;
+    margin-top: 1rem;
+  }
+
+  .mission-character-rig {
+    height: 118%;
+    top: -4%;
+    transform: translateX(-34%);
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mission-character-rig,
+  .mission-rig-moving {
+    animation: none;
+  }
+}

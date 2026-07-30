@@ -1,3 +1,5 @@
+import { curatedCollections } from "./collection-data";
+
 export type ProjectCategory = "UI/UX" | "DESIGN SYSTEM" | "2D GAME ART" | "ILLUSTRATION";
 
 export type Project = {
@@ -14,7 +16,7 @@ export type Project = {
   imageFit?: "cover" | "contain";
 };
 
-export const allProjects: Project[] = [
+const originalProjects: Project[] = [
   {
     number: "01",
     title: "FIX NOW",
@@ -41,40 +43,31 @@ export const allProjects: Project[] = [
   },
   {
     number: "03",
-    title: "AURORADOT",
-    type: "2D Game Art · 2024",
-    description: "Thế giới phiêu lưu 2D giúp trẻ em học tư duy toán học và khám phá thiên nhiên qua những khu rừng phép thuật.",
-    category: "2D GAME ART",
-    image: "/projects/auroradot-cover.png",
-    href: null,
+    title: "MOOD",
+    type: "Product UI/UX Design · 2026",
+    description: "Ứng dụng chăm sóc sức khỏe tinh thần giúp người dùng check-in cảm xúc, hiểu nguyên nhân và chọn bài tập điều hòa phù hợp.",
+    category: "UI/UX",
+    image: "/projects/mood/logo-system.png",
+    href: "/projects/mood",
     featured: true,
-    stamp: "GAME ART",
-    tone: "violet",
+    stamp: "MENTAL WELLNESS",
+    tone: "cyan",
+    imageFit: "contain",
   },
   {
     number: "04",
-    title: "COQNIT",
-    type: "Product Design · SaaS",
-    description: "Nền tảng AI marketing dành cho ứng dụng.",
+    title: "AURORADOT",
+    type: "UX/UI Product Design · 2024",
+    description: "Hệ sinh thái học tập cảm xúc giúp trẻ gọi tên cảm xúc, giáo viên nhận biết nhu cầu hỗ trợ và thanh thiếu niên theo dõi hành trình phát triển.",
     category: "UI/UX",
-    image: null,
-    href: null,
-    featured: false,
+    image: "/projects/auroradot/cover.png",
+    href: "/projects/auroradot",
+    featured: true,
+    stamp: "EDTECH / SEL",
     tone: "pink",
   },
   {
     number: "05",
-    title: "KIDMOOD",
-    type: "UI/UX · Illustration",
-    description: "Ứng dụng hỗ trợ cảm xúc cho gia đình.",
-    category: "ILLUSTRATION",
-    image: null,
-    href: null,
-    featured: false,
-    tone: "yellow",
-  },
-  {
-    number: "06",
     title: "UI SYSTEM STUDY",
     type: "Design System",
     description: "Xây dựng nền tảng, component và trạng thái giao diện.",
@@ -85,40 +78,35 @@ export const allProjects: Project[] = [
     tone: "paper",
     imageFit: "contain",
   },
-  {
-    number: "07",
-    title: "LEARNING ASSETS",
-    type: "Concept Art · Illustration",
-    description: "Hơn 100 tài nguyên cho game giáo dục.",
-    category: "ILLUSTRATION",
-    image: null,
-    href: null,
-    featured: false,
-    tone: "cyan",
-  },
-  {
-    number: "08",
-    title: "CHARACTERS & WORLDS",
-    type: "Concept Art",
-    description: "Bộ sưu tập phát triển hình ảnh kỳ ảo.",
-    category: "2D GAME ART",
-    image: null,
-    href: null,
-    featured: false,
-    tone: "violet",
-  },
-  {
-    number: "09",
-    title: "MOBILE GAME UI",
-    type: "Game UI · Illustration",
-    description: "Giao diện và asset cho game giải đố.",
-    category: "2D GAME ART",
-    image: null,
-    href: null,
-    featured: false,
-    tone: "paper",
-  },
 ];
+
+const curatedProjects: Project[] = curatedCollections.map((collection, index) => ({
+  number: String(index + 1).padStart(2, "0"),
+  title: collection.title,
+  type: collection.type,
+  description: collection.description,
+  category: collection.category,
+  image: collection.images[0],
+  href: `/projects/${collection.slug}`,
+  featured: false,
+  tone: collection.tone,
+  imageFit: collection.imageFit,
+}));
+
+const featuredOriginalProjects = originalProjects.filter((project) => project.featured);
+const archiveOriginalProjects = originalProjects.filter(
+  (project) => !project.featured && project.title !== "UI SYSTEM STUDY",
+);
+
+export const allProjects: Project[] = [
+  ...featuredOriginalProjects,
+  curatedProjects[0],
+  ...archiveOriginalProjects,
+  ...curatedProjects.slice(1),
+].map((project, index) => ({
+  ...project,
+  number: String(index + 1).padStart(2, "0"),
+}));
 
 export const featuredProjects = allProjects.filter((project) => project.featured);
 export const projectFilters = ["TẤT CẢ", "UI/UX", "DESIGN SYSTEM", "2D GAME ART", "ILLUSTRATION"] as const;

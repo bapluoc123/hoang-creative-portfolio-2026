@@ -145,6 +145,18 @@ const artCharacters = [
   },
 ];
 
+const abeeciLearningScreens = Array.from({ length: 6 }, (_, index) => ({
+  src: `/projects/drive-curated/learning-game-ui/${String(index + 1).padStart(2, "0")}.webp`,
+  label: `${String(index + 1).padStart(2, "0")} / LEARNING EXPERIENCE`,
+  alt: `Màn hình trải nghiệm học tập ABEECI ${index + 1}`,
+}));
+
+const abeeciLearningAssets = Array.from({ length: 50 }, (_, index) => ({
+  src: `/projects/drive-curated/learning-assets-library/${String(index + 1).padStart(2, "0")}.webp`,
+  label: String(index + 1).padStart(2, "0"),
+  alt: `Tài nguyên minh họa học tập ABEECI ${index + 1}`,
+}));
+
 export default function AbeeciCaseStudy() {
   return (
     <main className="abeeci-case">
@@ -291,6 +303,25 @@ export default function AbeeciCaseStudy() {
             </figure>
           </div>
         </div>
+
+        <div className="abeeci-learning-experience">
+          <div className="abeeci-learning-heading">
+            <span>LEARNING GAME UI / 06 SCREENS</span>
+            <h3>Lessons become<br /><em>small adventures.</em></h3>
+            <p>
+              Sáu màn hình mở rộng hệ thống ABEECI từ giao diện sản phẩm sang trải nghiệm học tương tác,
+              kết hợp bản đồ, nhiệm vụ, phản hồi và phần thưởng trong cùng một hành trình trực quan.
+            </p>
+          </div>
+          <div className="abeeci-learning-screen-grid">
+            {abeeciLearningScreens.map((screen) => (
+              <figure key={screen.src}>
+                <img src={screen.src} alt={screen.alt} loading="lazy" />
+                <figcaption>{screen.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="abeeci-ux-outcome">
@@ -359,9 +390,24 @@ export default function AbeeciCaseStudy() {
             </div>
           </div>
 
+          <div className="abeeci-learning-assets-block">
+            <div className="abeeci-art-collection-heading">
+              <span>03 / LEARNING ASSET LIBRARY</span>
+              <strong>50 REUSABLE ASSETS</strong>
+            </div>
+            <div className="abeeci-learning-assets-grid">
+              {abeeciLearningAssets.map((asset) => (
+                <figure key={asset.src}>
+                  <span>{asset.label}</span>
+                  <img src={asset.src} alt={asset.alt} loading="lazy" />
+                </figure>
+              ))}
+            </div>
+          </div>
+
           <div className="abeeci-elements-art">
             <div className="abeeci-elements-copy">
-              <span>03 / ELEMENTS</span>
+              <span>04 / ELEMENTS</span>
               <h3>Small assets,<br />clear meanings.</h3>
               <p>
                 Icon và vật phẩm được vẽ như những asset độc lập, giữ silhouette rõ ở kích thước nhỏ

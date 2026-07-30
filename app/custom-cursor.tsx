@@ -1,50 +1,45 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export function CustomCursor() {
-  useEffect(() => {
-    const cursor = document.querySelector<HTMLElement>(".cursor");
-    const cursorLabel = document.querySelector<HTMLElement>(".cursor-label");
-    const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
-    let pointerX = window.innerWidth / 2;
-    let pointerY = window.innerHeight / 2;
-    let cursorX = pointerX;
-    let cursorY = pointerY;
-    let cursorFrame = 0;
+  const cursorRef = useRef<HTMLDivElement>(null);
 
-    const renderCursor = () => {
-      cursorX += (pointerX - cursorX) * .18;
-      cursorY += (pointerY - cursorY) * .18;
-      cursor?.style.setProperty("transform", `translate3d(${cursorX}px, ${cursorY}px, 0)`);
-      cursorFrame = window.requestAnimationFrame(renderCursor);
-    };
+  useEffect(() => {
+    const cursor = cursorRef.current;
+    const cursorLabel = cursor?.querySelector<HTMLElement>(".cursor-label");
+    const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
+    if (!cursor || !hasFinePointer) return;
 
     const onPointerMove = (event: PointerEvent) => {
-      pointerX = event.clientX;
-      pointerY = event.clientY;
+      cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+      cursor.classList.add("is-visible");
       const target = (event.target as Element | null)?.closest<HTMLElement>("a, button");
-      cursor?.classList.toggle("is-active", Boolean(target));
+      cursor.classList.toggle("is-active", Boolean(target));
       if (cursorLabel) cursorLabel.textContent = target?.dataset.cursor ?? (target ? "↗" : "");
     };
-    const onPointerDown = () => cursor?.classList.add("is-pressed");
-    const onPointerUp = () => cursor?.classList.remove("is-pressed");
-    const onPointerLeave = () => cursor?.classList.remove("is-active");
+    const onPointerDown = () => cursor.classList.add("is-pressed");
+    const onPointerUp = () => cursor.classList.remove("is-pressed");
+    const onPointerLeave = () => {
+      cursor.classList.remove("is-active", "is-visible");
+      if (cursorLabel) cursorLabel.textContent = "";
+    };
+    const onPointerEnter = () => cursor.classList.add("is-visible");
 
-    if (hasFinePointer) cursorFrame = window.requestAnimationFrame(renderCursor);
     window.addEventListener("pointermove", onPointerMove);
     window.addEventListener("pointerdown", onPointerDown);
     window.addEventListener("pointerup", onPointerUp);
     document.documentElement.addEventListener("pointerleave", onPointerLeave);
+    document.documentElement.addEventListener("pointerenter", onPointerEnter);
 
     return () => {
-      if (cursorFrame) window.cancelAnimationFrame(cursorFrame);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerdown", onPointerDown);
       window.removeEventListener("pointerup", onPointerUp);
       document.documentElement.removeEventListener("pointerleave", onPointerLeave);
+      document.documentElement.removeEventListener("pointerenter", onPointerEnter);
     };
   }, []);
 
-  return <div className="cursor" aria-hidden="true"><span className="cursor-label" /></div>;
+  return <div ref={cursorRef} className="cursor custom-cursor" aria-hidden="true"><span className="cursor-label" /></div>;
 }
