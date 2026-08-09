@@ -1,7 +1,54 @@
 # GHI CHÚ TIẾP TỤC PORTFOLIO
 
-> Cập nhật lần cuối: 29/07/2026  
+> Cập nhật lần cuối: 09/08/2026  
 > Đây là handoff chính thức cho toàn bộ website. Hãy đọc hết file này trước khi chỉnh sửa.
+
+## 0. Handoff mới nhất — 09/08/2026
+
+Repository GitHub và nhánh làm việc chính:
+
+- `https://github.com/bapluoc123/hoang-creative-portfolio-2026.git`
+- Nhánh: `main`
+
+Thiết lập trên máy khác:
+
+```powershell
+git clone https://github.com/bapluoc123/hoang-creative-portfolio-2026.git
+cd hoang-creative-portfolio-2026
+npm.cmd install
+npm.cmd run dev
+```
+
+Sau đó mở `http://localhost:3000`.
+
+### Thay đổi mới nhất
+
+- Cover `ELIHIGH KIDS` trên homepage đã dùng ảnh nhân vật chính thức mới:
+  `public/projects/drive-curated/elihigh-kids/archive-cover.png`.
+- Hero của trang `/projects/elihigh-kids` cũng dùng cover này và crop phủ kín khung 16:9.
+- Cover `CHARACTER WORLDS & FANTASY` đã bỏ bố cục ba panel cũ và chuyển sang ảnh:
+  `public/projects/drive-curated/god-of-heaven/layout-chung.webp`.
+- Phần `Tôi là ai?` đã thay ba silhouette bằng ba giai đoạn thiết kế nhân vật theo thứ tự:
+  - `public/about-process-1.webp` — line art;
+  - `public/about-process-2.webp` — flat color;
+  - `public/about-process-3.webp` — rendered color.
+- Ba nhân vật được đặt làm artwork nền lớn, chồng lớp nhẹ và fade dần ở chân để không cạnh tranh với nội dung chữ. Ảnh thứ ba đã được kéo sang trái để không bị cắt ở mép phải.
+- Các asset mới đã được tối ưu dung lượng nhưng vẫn giữ nền trong suốt/chất lượng hiển thị.
+
+### File code vừa thay đổi
+
+- `app/page.tsx`
+- `app/globals.css`
+- `app/project-card.tsx`
+- `app/project-covers.css`
+- `app/projects/[slug]/page.tsx`
+
+### Trạng thái kiểm tra
+
+- `npm.cmd run build` đã pass ngày 09/08/2026.
+- TypeScript pass trong quá trình build.
+- Cần tiếp tục QA trực quan ở desktop và mobile, đặc biệt phần ba giai đoạn nhân vật trong `Tôi là ai?`.
+- Không đưa `dev-server.log`, thư mục `assets/`, `output/` hoặc file thử nghiệm cục bộ lên GitHub.
 
 ## 1. Thông tin nhanh
 

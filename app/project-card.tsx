@@ -12,12 +12,11 @@ function ArchiveProjectCover({ title }: { title: string }) {
   if (title === "ELIHIGH KIDS") {
     return (
       <div className="archive-cover archive-cover-elihigh" aria-label="ELIHIGH KIDS project cover">
-        <img className="archive-cover-bg" src="/projects/drive-curated/elihigh-kids/brand-01.webp" alt="" />
-        <span className="archive-cover-word">PLAY!</span>
-        <img className="archive-cover-panel archive-cover-panel-a" src="/projects/drive-curated/elihigh-kids/01.webp" alt="" />
-        <img className="archive-cover-panel archive-cover-panel-b" src="/projects/drive-curated/elihigh-kids/03.webp" alt="" />
-        <img className="archive-cover-mascot archive-cover-mascot-a" src="/projects/drive-curated/elihigh-kids/mascot-dinokung.webp" alt="" />
-        <img className="archive-cover-mascot archive-cover-mascot-b" src="/projects/drive-curated/elihigh-kids/mascot-toto.webp" alt="" />
+        <img
+          className="archive-cover-elihigh-image"
+          src="/projects/drive-curated/elihigh-kids/archive-cover.png"
+          alt=""
+        />
       </div>
     );
   }
@@ -25,11 +24,11 @@ function ArchiveProjectCover({ title }: { title: string }) {
   if (title === "CHARACTER WORLDS & FANTASY") {
     return (
       <div className="archive-cover archive-cover-character" aria-label="Character Worlds and Fantasy project cover">
-        <img className="archive-cover-bg" src="/projects/drive-curated/little-red-riding-hood/04.webp" alt="" />
-        <span className="archive-cover-word">CAST</span>
-        <img className="archive-cover-sheet archive-cover-sheet-a" src="/projects/drive-curated/little-red-riding-hood/01.webp" alt="" />
-        <img className="archive-cover-sheet archive-cover-sheet-b" src="/projects/drive-curated/god-of-heaven/01.webp" alt="" />
-        <img className="archive-cover-sheet archive-cover-sheet-c" src="/projects/drive-curated/the-purgers/01.webp" alt="" />
+        <img
+          className="archive-cover-character-image"
+          src="/projects/drive-curated/god-of-heaven/layout-chung.webp"
+          alt=""
+        />
       </div>
     );
   }

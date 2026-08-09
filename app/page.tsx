@@ -288,9 +288,9 @@ export default function Home() {
         </div>
 
         <div className="sketch-wall" aria-hidden="true">
-          {[0, 1, 2].map((item) => (
-            <div className={`sketch-person sketch-person-${item + 1}`} key={item}>
-              <span /><i /><b />
+          {["/about-process-1.webp", "/about-process-2.webp", "/about-process-3.webp"].map((src, item) => (
+            <div className={`sketch-person sketch-person-${item + 1}`} key={src}>
+              <img src={src} alt="" />
             </div>
           ))}
         </div>

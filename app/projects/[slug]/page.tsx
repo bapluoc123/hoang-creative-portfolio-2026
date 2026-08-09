@@ -43,6 +43,10 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
     : collection.category === "2D GAME ART"
       ? "Game / Interactive"
       : "Illustration / Publishing";
+  const isElihighKids = collection.slug === "elihigh-kids";
+  const coverImage = isElihighKids
+    ? "/projects/drive-curated/elihigh-kids/archive-cover.png"
+    : collection.images[0];
 
   return (
     <main className={`fix-case collection-page collection-case tone-${collection.tone}`}>
@@ -75,13 +79,13 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
           </div>
         </div>
 
-        <figure className="fix-case-hero-visual collection-case-cover">
+        <figure className={`fix-case-hero-visual collection-case-cover${isElihighKids ? " is-elihigh-cover" : ""}`}>
           <Image
             alt={`${collection.title} — project cover`}
             fill
             priority
             sizes="100vw"
-            src={collection.images[0]}
+            src={coverImage}
           />
           <span>{collection.title} · {String(collection.images.length).padStart(2, "0")} VISUALS</span>
         </figure>
