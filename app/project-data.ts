@@ -20,7 +20,7 @@ const originalProjects: Project[] = [
   {
     number: "01",
     title: "FIX NOW",
-    type: "UI/UX Product Design · 2024",
+    type: "UX/UI Design · 2026",
     description: "Ứng dụng kết nối hộ gia đình với thợ sửa chữa uy tín, tích hợp AI chẩn đoán và báo giá minh bạch.",
     category: "UI/UX",
     image: "/projects/fixnow-cover.png",
@@ -32,7 +32,7 @@ const originalProjects: Project[] = [
   {
     number: "02",
     title: "ABEECI",
-    type: "UI/UX Design & 2D Art",
+    type: "UX/UI Design · 2025",
     description: "Ứng dụng học tập cho trẻ em kết hợp bài học, minigame, phần thưởng và khu vực dành cho phụ huynh.",
     category: "UI/UX",
     image: "/projects/abeeci-home.png",
@@ -44,7 +44,7 @@ const originalProjects: Project[] = [
   {
     number: "03",
     title: "MOOD",
-    type: "Product UI/UX Design · 2026",
+    type: "UX/UI Design · 2026",
     description: "Ứng dụng chăm sóc sức khỏe tinh thần giúp người dùng check-in cảm xúc, hiểu nguyên nhân và chọn bài tập điều hòa phù hợp.",
     category: "UI/UX",
     image: "/projects/mood/logo-system.png",
@@ -57,7 +57,7 @@ const originalProjects: Project[] = [
   {
     number: "04",
     title: "AURORADOT",
-    type: "UX/UI Product Design · 2024",
+    type: "UX/UI Design · Illustration · 2026",
     description: "Hệ sinh thái học tập cảm xúc giúp trẻ gọi tên cảm xúc, giáo viên nhận biết nhu cầu hỗ trợ và thanh thiếu niên theo dõi hành trình phát triển.",
     category: "UI/UX",
     image: "/projects/auroradot/cover.png",
@@ -88,7 +88,7 @@ const curatedProjects: Project[] = curatedCollections.map((collection, index) =>
   category: collection.category,
   image: collection.images[0],
   href: `/projects/${collection.slug}`,
-  featured: false,
+  featured: collection.slug === "elihigh-kids",
   tone: collection.tone,
   imageFit: collection.imageFit,
 }));

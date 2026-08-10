@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image from "../../unoptimized-image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { curatedCollections } from "../../collection-data";
@@ -45,7 +45,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
       : "Illustration / Publishing";
   const isElihighKids = collection.slug === "elihigh-kids";
   const coverImage = isElihighKids
-    ? "/projects/drive-curated/elihigh-kids/archive-cover.png"
+    ? "/projects/drive-curated/elihigh-kids/behance-cover.jpg"
     : collection.images[0];
 
   return (

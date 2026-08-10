@@ -41,7 +41,7 @@ const sourceCollections: CuratedCollection[] = [
   {
     slug: "elihigh-kids",
     title: "ELIHIGH KIDS",
-    type: "Educational Game UI & 2D Art",
+    type: "UI Design · Illustration · 2023",
     category: "UI/UX",
     description: "Hệ thống minigame học tập giàu màu sắc dành cho thương hiệu giáo dục mầm non Elihigh Kids tại Hàn Quốc.",
     intro: "Bộ màn hình biến các bài học dành cho trẻ 4–7 tuổi thành những hoạt động ngắn, trực quan và vui nhộn: khám phá động vật, ghép hình, trồng cây, làm đồ ăn, vận động và sáng tạo. Giao diện sử dụng nhân vật thân thiện, chỉ dẫn rõ ràng và phản hồi tức thì để trẻ có thể vừa chơi vừa học.",

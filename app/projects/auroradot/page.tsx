@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image from "../../unoptimized-image";
 import Link from "next/link";
 import { CustomCursor } from "../../custom-cursor";
 
@@ -130,7 +130,7 @@ export default function AuroradotPage() {
 
       <section className="aurora-hero">
         <div className="aurora-hero-copy">
-          <span>EDTECH · SOCIAL EMOTIONAL LEARNING · 2024</span>
+          <span>EDTECH · UX/UI DESIGN · ILLUSTRATION · 2026</span>
           <h1>
             AURORA
             <em>DOT.</em>

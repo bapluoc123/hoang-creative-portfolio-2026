@@ -196,25 +196,17 @@ export default function AbeeciCaseStudy() {
         <figure className="abeeci-hero-visual">
           <img
             className="abeeci-hero-cover-bg"
-            src="/projects/abeeci/art-bg-barry.png"
-            alt=""
-            aria-hidden="true"
+            src="/projects/abeeci/abeeci-cover-2026.png"
+            alt="Ba nhân vật ABEECI trong thế giới học tập giữa rừng tre"
           />
           <div className="abeeci-hero-cover-copy">
-            <span>ABEECI / LEARNING APP</span>
+            <div className="abeeci-cover-brand">
+              <i aria-hidden="true">A</i>
+              <b>ABEECI</b>
+            </div>
+            <small className="abeeci-cover-subtitle">LEARNING APP · UX/UI &amp; ILLUSTRATION</small>
             <strong>Learn.<br />Play.<br /><em>Grow.</em></strong>
           </div>
-          <img
-            className="abeeci-hero-cover-mark"
-            src="/projects/abeeci/art-element-home.png"
-            alt="Biểu tượng ngôi nhà tổ ong của ứng dụng ABEECI"
-          />
-          <img
-            className="abeeci-hero-cover-character"
-            src="/projects/abeeci/art-character-barry.png"
-            alt=""
-            aria-hidden="true"
-          />
           <figcaption>ABEECI · LEARN · PLAY · GROW</figcaption>
         </figure>
       </section>

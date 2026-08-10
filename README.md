@@ -1,98 +1,48 @@
-# vinext-starter
+# Huy Hoàng — Creative Portfolio 2026
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+Portfolio cá nhân kết hợp UX/UI Design và Illustration, xây dựng bằng Next.js và triển khai trên Cloudflare Workers.
 
-## Prerequisites
+## Ghi chú nhanh
 
-- Node.js `>=22.13.0`
+| Nội dung | Thông tin |
+| --- | --- |
+| Chạy local | `npm install` rồi `npm run dev` |
+| Địa chỉ local | `http://localhost:3000` |
+| Kiểm tra trước khi đăng | `npm run build` |
+| Nội dung trang chủ | `app/page.tsx` |
+| Dữ liệu dự án | `app/project-data.ts` và `app/collection-data.ts` |
+| CSS toàn website | `app/globals.css` |
+| Ảnh dự án | `public/projects/` |
+| Website Cloudflare | `https://hoang-creative-portfolio.bapluoc511999.workers.dev` |
 
-## Quick Start
+## Các dự án chính
 
-```bash
-npm install
-npm run dev
-npm run build
-```
+| Dự án | Lĩnh vực | Năm | Đường dẫn |
+| --- | --- | --- | --- |
+| FIX NOW | UX/UI Design | 2026 | `/projects/fix-now` |
+| ABEECI | UX/UI Design · Illustration | 2025 | `/projects/abeeci` |
+| MOOD | UX/UI Design | 2026 | `/projects/mood` |
+| AURORADOT | UX/UI Design · Illustration | 2026 | `/projects/auroradot` |
+| ELIHIGH KIDS | UI Design · Illustration | 2023 | `/projects/elihigh-kids` |
 
-This starter does not use `wrangler.jsonc`.
+## Cách sửa nội dung
 
-## Included Shape
+1. Mở `app/page.tsx` để sửa phần giới thiệu, kinh nghiệm, học vấn và liên hệ.
+2. Mở file trong `app/projects/` để sửa nội dung case study tương ứng.
+3. Thay ảnh trong `public/projects/` và giữ nguyên tên file nếu muốn cập nhật mà không sửa code.
+4. Chạy `npm run build` sau mỗi thay đổi lớn.
 
-- edit site code under `app/`
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
+## Ảnh và triển khai
 
-## Workspace Auth Headers
+- Ảnh Next.js đang dùng chế độ `unoptimized` để hoạt động ổn định trên Cloudflare Workers.
+- Không xóa `app/unoptimized-image.tsx` hoặc cấu hình `images.unoptimized` trong `next.config.ts`.
+- Quy trình Cloudflare chi tiết nằm trong `DEPLOYMENT_NOTE.md`.
+- Ghi chú phát triển đầy đủ nằm trong `CONTINUE_NEXT_WEEK.md`.
 
-OpenAI workspace sites can read the current user's email from
-`oai-authenticated-user-email`.
+## Trạng thái gần nhất
 
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
-
-Treat the full name as optional and fall back to email when it is absent:
-
-```tsx
-import { headers } from "next/headers";
-
-export default async function Home() {
-  const requestHeaders = await headers();
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
-
-  const displayName = fullName ?? email;
-  // ...
-}
-```
-
-## Optional Dispatch-Owned ChatGPT Sign-In
-
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
-
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
-  browser links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
-
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
-
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
-
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
-
-## Useful Commands
-
-- `npm run dev`: start local development
-- `npm run build`: verify the vinext build output
-- `npm test`: build the starter and verify its rendered loading skeleton
-- `npm run db:generate`: generate Drizzle migrations after schema changes
-
-## Learn More
-
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+- Đã sửa lỗi ảnh khi deploy Cloudflare.
+- Đã chuẩn hóa nội dung và metadata của các dự án chính.
+- Đã cập nhật cover Elihigh Kids và cover ABEECI.
+- Đã cân lại spacing, typography và bố cục trang FIX NOW.
+- Luôn chạy `npm run build` trước khi commit hoặc deploy.

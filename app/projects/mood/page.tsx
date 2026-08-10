@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image from "../../unoptimized-image";
 import Link from "next/link";
 import { CustomCursor } from "../../custom-cursor";
 

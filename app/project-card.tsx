@@ -14,7 +14,7 @@ function ArchiveProjectCover({ title }: { title: string }) {
       <div className="archive-cover archive-cover-elihigh" aria-label="ELIHIGH KIDS project cover">
         <img
           className="archive-cover-elihigh-image"
-          src="/projects/drive-curated/elihigh-kids/archive-cover.png"
+          src="/projects/drive-curated/elihigh-kids/behance-cover.jpg"
           alt=""
         />
       </div>
@@ -121,25 +121,17 @@ export function ProjectCard({ project }: { project: Project }) {
             <img
               aria-hidden="true"
               className="abeeci-card-cover-bg"
-              src="/projects/abeeci/art-bg-barry.png"
+              src="/projects/abeeci/abeeci-cover-2026.png"
               alt=""
             />
             <div className="abeeci-card-cover-copy">
-              <span>ABEECI / LEARNING APP</span>
+              <div className="abeeci-cover-brand">
+                <i aria-hidden="true">A</i>
+                <b>ABEECI</b>
+              </div>
+              <small className="abeeci-cover-subtitle">LEARNING APP · UX/UI &amp; ILLUSTRATION</small>
               <strong>Learn.<br />Play.<br /><em>Grow.</em></strong>
             </div>
-            <img
-              aria-hidden="true"
-              className="abeeci-card-cover-mark"
-              src="/projects/abeeci/art-element-home.png"
-              alt=""
-            />
-            <img
-              aria-hidden="true"
-              className="abeeci-card-cover-character"
-              src="/projects/abeeci/art-character-barry.png"
-              alt=""
-            />
           </div>
         ) : project.title === "MOOD" ? (
           <MoodCardCover />

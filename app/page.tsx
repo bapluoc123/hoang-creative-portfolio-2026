@@ -219,11 +219,11 @@ export default function Home() {
         </a>
 
         <nav className="desktop-nav" aria-label="Điều hướng chính">
-          <a href="#top">Trang chủ<small>Mở đầu</small></a>
-          <a href="#about">Giới thiệu<small>Về tôi</small></a>
-          <a href="#work">Dự án<small>Sản phẩm</small></a>
-          <a href="#education">Học vấn<small>Đào tạo</small></a>
-          <a href="#contact">Liên hệ<small>Trò chuyện</small></a>
+          <a href="#top">Trang chủ</a>
+          <a href="#about">Giới thiệu</a>
+          <a href="#work">Dự án</a>
+          <a href="#education">Học vấn</a>
+          <a href="#contact">Liên hệ</a>
         </nav>
 
         <button
@@ -252,7 +252,7 @@ export default function Home() {
       <section className="hero paper-noise" id="top">
         <div className="hero-ghost" aria-hidden="true">HOÀNG×SÁNGTẠO</div>
         <div className="hero-meta">UI/UX DESIGNER · 2D ARTIST<br />BASED IN VIETNAM</div>
-        <div className="hero-kicker">Designing useful worlds with character.</div>
+        <div className="hero-kicker">Where Design Meets Illustration</div>
 
         <div className="hero-figure-wrap">
           <CreatorFigure />
@@ -266,8 +266,8 @@ export default function Home() {
         </h1>
 
         <p className="hero-statement">
-          <span>Tôi thiết kế</span> giao diện trực quan và những thế giới 2D giàu cảm xúc<br />
-          <span>cho sản phẩm</span> mà mọi người thích sử dụng và luôn ghi nhớ.
+          <span>Tôi thiết kế những trải nghiệm số trực quan,</span> kết hợp tư duy UX/UI với khả năng kể chuyện bằng hình ảnh.<br />
+          <span>Tạo ra những sản phẩm không chỉ dễ sử dụng,</span> mà còn có cá tính và dấu ấn thị giác riêng.
         </p>
 
         <span className="hero-spark spark-yellow" aria-hidden="true">✦</span>
@@ -297,8 +297,11 @@ export default function Home() {
 
         <div className="about-copy reveal">
           <p className="about-lead">
-            Huy Hoàng là một <mark>UI/UX DESIGNER & 2D ARTIST</mark>, sáng tạo tại nơi
-            {" "}<mark>FUNCTION MEETS IMAGINATION.</mark>
+            Tôi là một<br />
+            <mark>UI/UX DESIGNER & 2D ARTIST.</mark><br />
+            <span className="about-lead-support">
+              Tôi thiết kế trải nghiệm số bằng tư duy UX/UI và ngôn ngữ hình ảnh.
+            </span>
           </p>
           <div className="about-details">
             <p>
@@ -306,8 +309,8 @@ export default function Home() {
               cho mobile game, ứng dụng giáo dục và các sản phẩm số.
             </p>
             <p>
-              Kinh nghiệm hợp tác với các đội ngũ tại Singapore và Hàn Quốc giúp tôi
-              cân bằng tư duy sản phẩm với một ngôn ngữ hình ảnh có cá tính riêng.
+              Kinh nghiệm làm việc với các đội ngũ tại Singapore và Hàn Quốc giúp tôi kết hợp tư duy
+              sản phẩm với thế mạnh về hình ảnh, tạo nên những thiết kế vừa có mục đích vừa có cá tính.
             </p>
           </div>
           <div className="profile-facts">
@@ -327,7 +330,6 @@ export default function Home() {
         <div className="mission-head reveal">
           <div>
             <h2>Sứ mệnh</h2>
-            <span>Sứ mệnh cá nhân</span>
           </div>
           <p>MAKE THE EVERYDAY<br /><em>FEEL LESS ORDINARY.</em></p>
         </div>
@@ -388,6 +390,15 @@ export default function Home() {
                 <AuroradotCardCover />
                 <span className="work-index">{project.number}</span>
                 <span className="work-stamp">{project.stamp}</span>
+              </div>
+            ) : project.title === "ELIHIGH KIDS" ? (
+              <div className="work-visual elihigh-work-visual">
+                <img
+                  className="elihigh-work-cover"
+                  src="/projects/drive-curated/elihigh-kids/behance-cover.jpg"
+                  alt="Ảnh đại diện dự án ELIHIGH KIDS"
+                />
+                <span className="work-index">{project.number}</span>
               </div>
             ) : (
               <div className="work-visual" style={{ backgroundImage: `url("${project.image}")` }}>

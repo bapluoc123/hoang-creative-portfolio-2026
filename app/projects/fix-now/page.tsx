@@ -15,7 +15,7 @@ const insights = [
 function Slide({ name, alt, className = "" }: { name: string; alt: string; className?: string }) {
   return (
     <figure className={`fix-case-slide ${className}`}>
-      <img src={`/projects/fix-now/${name}`} alt={alt} loading="lazy" />
+      <img src={`/projects/fix-now/${name}`} alt={alt} />
     </figure>
   );
 }
@@ -24,7 +24,7 @@ function Screen({ name, alt, label, className = "" }: { name: string; alt: strin
   return (
     <figure className={`fix-phone ${className}`}>
       <span>{label}</span>
-      <div><img src={`/projects/fix-now/figma/${name}`} alt={alt} loading="lazy" /></div>
+      <div><img src={`/projects/fix-now/figma/${name}`} alt={alt} /></div>
     </figure>
   );
 }
@@ -42,14 +42,14 @@ export default function FixNowCaseStudy() {
 
       <section className="fix-case-hero paper-noise">
         <div className="fix-case-hero-copy">
-          <span>UI/UX PRODUCT DESIGN · 2024</span>
+          <span>UX/UI DESIGN · 2026</span>
           <h1>FIX<br /><em>NOW.</em></h1>
           <p>Một trải nghiệm giúp việc tìm thợ, hiểu sự cố và kiểm soát chi phí trở nên rõ ràng hơn.</p>
         </div>
         <div className="fix-case-hero-meta">
           <div><small>VAI TRÒ</small><strong>Team Lead<br />UI/UX Designer</strong></div>
           <div><small>ĐỘI NGŨ</small><strong>03 thành viên</strong></div>
-          <div><small>THỜI GIAN</small><strong>2024</strong></div>
+          <div><small>THỜI GIAN</small><strong>2026</strong></div>
         </div>
         <div className="fix-case-hero-visual">
           <img src="/projects/fixnow-cover.png" alt="Tổng quan ứng dụng FIX NOW" />
@@ -203,10 +203,6 @@ export default function FixNowCaseStudy() {
         <div className="fix-final-copy">
           <span>FINAL EXPERIENCE / 09</span>
           <h2>Designed to feel<br /><em>already familiar.</em></h2>
-          <p>
-            Những màn hình thật từ Figma trở thành trọng tâm. Presentation chỉ còn đóng vai trò
-            giải thích quyết định, không còn lấn át sản phẩm.
-          </p>
         </div>
         <Screen name="home.png" alt="Màn hình hoàn thiện trang chủ FIX NOW" label="PRODUCT UI / HOME" className="is-final-home" />
         <Screen name="ai-result.png" alt="Màn hình hoàn thiện kết quả AI FIX NOW" label="PRODUCT UI / AI RESULT" className="is-final-result" />
@@ -233,7 +229,7 @@ export default function FixNowCaseStudy() {
 
       <footer className="fix-case-footer">
         <a data-cursor="DỰ ÁN" href="/projects">← TẤT CẢ DỰ ÁN</a>
-        <span>FIX NOW · UI/UX PRODUCT DESIGN · 2024</span>
+        <span>FIX NOW · UX/UI DESIGN · 2026</span>
         <a data-cursor="XEM THÊM" href="/projects">DỰ ÁN KHÁC →</a>
       </footer>
     </main>
