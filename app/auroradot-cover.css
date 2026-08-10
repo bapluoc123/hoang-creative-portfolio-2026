@@ -1,0 +1,132 @@
+.auroradot-card-cover,
+.auroradot-work-visual {
+  background:
+    radial-gradient(circle at 72% 18%, rgb(255 255 255 / 16%), transparent 26%),
+    linear-gradient(145deg, #8062ad 0%, #9a7bc3 48%, #cfc4e6 100%);
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+}
+
+.auroradot-card-cover {
+  height: 100%;
+  width: 100%;
+}
+
+.auroradot-card-cover::after {
+  background: rgb(255 255 255 / 24%);
+  clip-path: polygon(0 79%, 100% 50%, 100% 76%, 0 100%);
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.auroradot-card-devices {
+  inset: 0;
+  position: absolute;
+  z-index: 2;
+}
+
+.auroradot-device {
+  background: #fff;
+  border: clamp(3px, .45vw, 7px) solid #fff;
+  border-radius: clamp(.85rem, 2vw, 2.6rem);
+  box-shadow:
+    0 1.6rem 3.5rem rgb(40 26 61 / 28%),
+    inset 0 0 0 1px rgb(40 26 61 / 8%);
+  overflow: hidden;
+  position: absolute;
+  transform: rotate(-9deg);
+  transition: transform .8s cubic-bezier(.22, 1, .36, 1), box-shadow .8s ease;
+}
+
+.gallery-card-visual .auroradot-device img,
+.auroradot-work-visual .auroradot-device img {
+  filter: contrast(1.035) saturate(1.035);
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  width: 100%;
+}
+
+.auroradot-device-left {
+  height: 104%;
+  left: -8%;
+  top: -5%;
+  width: 34%;
+  z-index: 2;
+}
+
+.auroradot-device-center {
+  height: 108%;
+  left: 31%;
+  top: 1%;
+  width: 38%;
+  z-index: 5;
+}
+
+.auroradot-device-right {
+  height: 94%;
+  right: -8%;
+  top: 27%;
+  width: 34%;
+  z-index: 4;
+}
+
+.auroradot-device-top {
+  height: 60%;
+  right: 4%;
+  top: -38%;
+  width: 35%;
+  z-index: 1;
+}
+
+.auroradot-device-bottom {
+  bottom: -43%;
+  height: 62%;
+  left: 8%;
+  width: 34%;
+  z-index: 1;
+}
+
+.auroradot-work-visual .auroradot-device-left {
+  left: 1%;
+  width: 25%;
+}
+
+.auroradot-work-visual .auroradot-device-center {
+  left: 34%;
+  width: 28%;
+}
+
+.auroradot-work-visual .auroradot-device-right {
+  right: 1%;
+  width: 25%;
+}
+
+.auroradot-work-visual .auroradot-device-top {
+  right: 16%;
+  width: 25%;
+}
+
+.auroradot-work-visual .auroradot-device-bottom {
+  left: 19%;
+  width: 25%;
+}
+
+.gallery-card.is-linked:hover .auroradot-device,
+.work-card:hover .auroradot-device {
+  box-shadow:
+    0 2rem 4.2rem rgb(40 26 61 / 34%),
+    inset 0 0 0 1px rgb(40 26 61 / 8%);
+  transform: rotate(-9deg) translateY(-1.5%);
+}
+
+.gallery-card-visual:has(.auroradot-card-cover) .gallery-card-number,
+.gallery-card-visual:has(.auroradot-card-cover) .gallery-card-open,
+.auroradot-work-visual .work-index,
+.auroradot-work-visual .work-stamp {
+  display: none;
+}

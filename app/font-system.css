@@ -1,0 +1,53 @@
+/*
+ * Vietnamese-safe type overrides for legacy case-study styles.
+ * The original rules used local Georgia/Arial, producing different glyphs
+ * and accent metrics depending on the visitor's operating system.
+ */
+.mood-hero h1,
+.aurora-sans,
+.lightbox-close {
+  font-family: var(--font-be-vietnam-pro), Arial, Helvetica, sans-serif;
+}
+
+.mood-hero h1 em,
+.mood-hero-meta strong,
+.mood-premise p,
+.mood-section-heading h2,
+.mood-onboarding h2,
+.mood-outcome h2,
+.mood-journey-screens figcaption strong,
+.mood-feature-copy h3,
+.mood-language-grid article > strong,
+.mood-outcome-stats strong,
+.aurora-hero h1,
+.aurora-hero-meta strong,
+.aurora-stage-word,
+.aurora-manifesto p,
+.aurora-section-heading h2,
+.aurora-flow-copy h2,
+.aurora-teen-heading h2,
+.aurora-outcome h2,
+.aurora-chapter h2,
+.aurora-kid-heading h2,
+.aurora-illustration-intro h2,
+.aurora-kid-card figcaption strong,
+.aurora-atlas-heading > div strong,
+.aurora-atlas-heading h2 em,
+.aurora-screen-card figcaption strong,
+.aurora-ui-art-word,
+.aurora-element-atlas-heading strong,
+.aurora-phone-pair figcaption strong,
+.aurora-screen-row figcaption strong,
+.aurora-teen-grid figcaption strong,
+.aurora-serif {
+  font-family: var(--font-display-serif), Georgia, "Times New Roman", serif;
+}
+
+html {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-kerning: normal;
+}

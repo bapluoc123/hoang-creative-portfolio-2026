@@ -1,0 +1,12 @@
+/* Keep the hero profession label in the free column between the brand and navigation. */
+.hero-meta {
+  left: 40%;
+}
+
+@media (min-width: 981px) and (max-width: 1120px) {
+  .hero-meta {
+    font-size: .48rem;
+    left: 34%;
+    letter-spacing: .1em;
+  }
+}

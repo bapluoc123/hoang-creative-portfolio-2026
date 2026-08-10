@@ -1,0 +1,425 @@
+.archive-cover {
+  height: 100%;
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.gallery-card-visual .archive-cover img {
+  display: block;
+  filter: none;
+  height: auto;
+  max-width: none;
+  object-fit: cover;
+  position: absolute;
+  transition: transform .8s cubic-bezier(.22, 1, .36, 1), filter .5s ease;
+  width: auto;
+}
+
+.archive-cover-bg {
+  height: 100% !important;
+  inset: 0;
+  width: 100% !important;
+  z-index: 0;
+}
+
+.archive-cover-word {
+  font-family: var(--font-display-serif), Georgia, serif;
+  font-weight: 800;
+  letter-spacing: -.07em;
+  line-height: .8;
+  position: absolute;
+  z-index: 2;
+}
+
+.archive-cover-elihigh {
+  background:
+    radial-gradient(circle at 10% 10%, rgb(255 255 255 / 92%) 0 4%, transparent 4.3%),
+    radial-gradient(circle at 47% 88%, rgb(255 255 255 / 44%) 0 12%, transparent 12.4%),
+    linear-gradient(135deg, #fff3a9 0%, #f9df72 46%, #91e0e7 46.2%, #64c7d7 100%);
+}
+
+.archive-cover-elihigh::after {
+  background-image:
+    linear-gradient(rgb(32 72 88 / 8%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(32 72 88 / 8%) 1px, transparent 1px);
+  background-size: 2rem 2rem;
+  content: "";
+  inset: 0;
+  position: absolute;
+  z-index: 0;
+}
+
+.elihigh-cover-copy {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(.45rem, 1vw, .9rem);
+  left: clamp(1.2rem, 4vw, 3.2rem);
+  max-width: 42%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+
+.elihigh-cover-kicker,
+.elihigh-cover-meta {
+  color: #17485a;
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(.48rem, .8vw, .72rem);
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.elihigh-cover-logo {
+  height: auto !important;
+  max-width: 13rem !important;
+  position: relative !important;
+  width: min(100%, 13rem) !important;
+}
+
+.elihigh-cover-copy strong {
+  color: #173b49;
+  font-family: var(--font-display-serif), Georgia, serif;
+  font-size: clamp(1.25rem, 3vw, 2.8rem);
+  letter-spacing: -.045em;
+  line-height: .94;
+}
+
+.elihigh-cover-meta {
+  border-top: 1px solid rgb(23 72 90 / 32%);
+  padding-top: .7rem;
+}
+
+.elihigh-cover-screen {
+  background: #fff;
+  border: clamp(5px, .65vw, 10px) solid #fff;
+  border-radius: clamp(.7rem, 1.5vw, 1.35rem);
+  box-shadow: 0 1.6rem 3.2rem rgb(28 74 88 / 24%);
+  height: 76%;
+  overflow: hidden;
+  position: absolute;
+  right: 5%;
+  top: 12%;
+  transform: rotate(2deg);
+  transition: transform .8s cubic-bezier(.22, 1, .36, 1);
+  width: 48%;
+  z-index: 3;
+}
+
+.elihigh-cover-screen img {
+  height: 100% !important;
+  inset: 0;
+  object-fit: cover !important;
+  object-position: 50% 17%;
+  width: 100% !important;
+}
+
+.elihigh-cover-index {
+  align-items: center;
+  background: #173b49;
+  border-radius: 999px;
+  color: #fff;
+  display: flex;
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(.55rem, .9vw, .78rem);
+  height: clamp(2rem, 3.5vw, 3rem);
+  justify-content: center;
+  position: absolute;
+  right: 3%;
+  top: 5%;
+  width: clamp(2rem, 3.5vw, 3rem);
+  z-index: 4;
+}
+
+.gallery-card.is-linked:hover .elihigh-cover-screen {
+  transform: rotate(0deg) translateY(-1.5%);
+}
+
+.archive-cover-elihigh {
+  background: #fff;
+}
+
+.archive-cover-elihigh::after {
+  display: none;
+}
+
+.archive-cover-elihigh::before {
+  background: linear-gradient(105deg, transparent 34%, rgb(255 255 255 / 58%) 50%, transparent 66%);
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  transform: translateX(-115%);
+  transition: transform .9s cubic-bezier(.22, 1, .36, 1);
+  z-index: 2;
+}
+
+.gallery-card-visual .archive-cover .archive-cover-elihigh-image {
+  filter: saturate(.94);
+  height: 100%;
+  inset: 0;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center;
+  position: absolute;
+  transform: scale(1.205);
+  transition: transform .75s cubic-bezier(.22, 1, .36, 1), filter .55s ease;
+  width: 100%;
+}
+
+.gallery-card.is-linked:hover .gallery-card-visual .archive-cover-elihigh-image {
+  filter: saturate(1.08);
+  transform: scale(1.235);
+}
+
+.gallery-card.is-linked:hover .archive-cover-elihigh::before {
+  transform: translateX(115%);
+}
+
+.archive-cover-character {
+  background: #f4f4f4;
+}
+
+.archive-cover-character::after {
+  display: none;
+}
+
+.gallery-card-visual .archive-cover .archive-cover-character-image {
+  filter: saturate(.96);
+  height: 100%;
+  inset: 0;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center 28%;
+  position: absolute;
+  transform: scale(1.01);
+  transition: transform .75s cubic-bezier(.22, 1, .36, 1), filter .55s ease;
+  width: 100%;
+}
+
+.gallery-card.is-linked:hover .gallery-card-visual .archive-cover-character-image {
+  filter: saturate(1.08);
+  transform: scale(1.045);
+}
+
+.archive-cover-character .archive-cover-bg {
+  filter: brightness(.62) saturate(.8);
+}
+
+.archive-cover-character::after {
+  display: none;
+}
+
+.archive-cover-character .archive-cover-word {
+  bottom: 3%;
+  color: rgb(255 236 197 / 16%);
+  font-size: clamp(4rem, 10vw, 10rem);
+  left: -2%;
+}
+
+.archive-cover-sheet {
+  background: #f5f0e7;
+  border: 3px solid rgb(255 255 255 / 70%);
+  box-shadow: 0 1.2rem 2.8rem rgb(0 0 0 / 38%);
+  height: 76% !important;
+  object-fit: contain !important;
+  top: 11%;
+  width: 31% !important;
+  z-index: 3;
+}
+
+.archive-cover-sheet-a {
+  left: 2%;
+  transform: rotate(-5deg);
+}
+
+.archive-cover-sheet-b {
+  left: 34.5%;
+  transform: rotate(2deg);
+}
+
+.archive-cover-sheet-c {
+  right: 2%;
+  transform: rotate(6deg);
+}
+
+.archive-cover-illustration {
+  background: #f1d7c9;
+}
+
+.archive-cover-illustration .archive-cover-bg {
+  filter: saturate(.9);
+}
+
+.archive-cover-ink {
+  background: linear-gradient(135deg, rgb(31 51 74 / 12%), rgb(255 245 228 / 66%));
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.archive-cover-art {
+  background: #fffaf0;
+  border: 3px solid #fffaf0;
+  box-shadow: 0 1.3rem 3rem rgb(35 35 48 / 28%);
+  object-fit: cover !important;
+  z-index: 3;
+}
+
+.archive-cover-art-a {
+  height: 88% !important;
+  left: -4%;
+  top: 8%;
+  transform: rotate(-6deg);
+  width: 44% !important;
+}
+
+.archive-cover-art-b {
+  height: 66% !important;
+  left: 37%;
+  top: -5%;
+  transform: rotate(5deg);
+  width: 32% !important;
+}
+
+.archive-cover-art-c {
+  bottom: -8%;
+  height: 72% !important;
+  right: -2%;
+  transform: rotate(-4deg);
+  width: 38% !important;
+}
+
+.archive-cover-kids-game {
+  background: #ff80bf;
+}
+
+.archive-cover-kids-game .archive-cover-bg {
+  filter: saturate(1.12);
+}
+
+.archive-cover-kids-game::after {
+  background: linear-gradient(90deg, rgb(83 41 140 / 42%), transparent 55%);
+  content: "";
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.archive-cover-kids-game .archive-cover-word {
+  color: #fff35e;
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  left: 3%;
+  text-shadow: 0 .3rem 0 rgb(101 50 157 / 54%);
+  top: 7%;
+  transform: rotate(-6deg);
+}
+
+.archive-cover-prop {
+  bottom: -12%;
+  height: 88% !important;
+  left: -4%;
+  object-fit: contain !important;
+  transform: rotate(-12deg);
+  width: 46% !important;
+  z-index: 3;
+}
+
+.archive-cover-game {
+  background: white;
+  border: 3px solid white;
+  border-radius: .45rem;
+  box-shadow: 0 1.4rem 3rem rgb(53 24 80 / 30%);
+  height: 76% !important;
+  object-fit: contain !important;
+  top: 13%;
+  width: 32% !important;
+  z-index: 4;
+}
+
+.archive-cover-game-a {
+  left: 42%;
+  transform: rotate(-4deg);
+}
+
+.archive-cover-game-b {
+  right: -3%;
+  transform: rotate(7deg);
+}
+
+.archive-cover-story {
+  background:
+    linear-gradient(90deg, transparent 49.8%, rgb(28 28 28 / 12%) 50%, transparent 50.2%),
+    #eee9df;
+}
+
+.archive-cover-story .archive-cover-word {
+  color: rgb(25 25 25 / 22%);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: clamp(.9rem, 1.8vw, 1.8rem);
+  left: 4%;
+  letter-spacing: .12em;
+  top: 5%;
+}
+
+.archive-cover-storyboard {
+  border: 4px solid #171717;
+  box-shadow: 0 1.2rem 2.5rem rgb(0 0 0 / 24%);
+  height: 38% !important;
+  object-fit: cover !important;
+  width: 49% !important;
+  z-index: 2;
+}
+
+.archive-cover-storyboard-a {
+  left: -3%;
+  top: 20%;
+  transform: rotate(-4deg);
+}
+
+.archive-cover-storyboard-b {
+  right: -4%;
+  top: 8%;
+  transform: rotate(5deg);
+}
+
+.archive-cover-book {
+  box-shadow: 0 1.4rem 3rem rgb(35 45 62 / 30%);
+  height: 49% !important;
+  object-fit: cover !important;
+  width: 42% !important;
+  z-index: 4;
+}
+
+.archive-cover-book-a {
+  bottom: -5%;
+  left: 13%;
+  transform: rotate(7deg);
+}
+
+.archive-cover-book-b {
+  bottom: -8%;
+  right: 5%;
+  transform: rotate(-5deg);
+}
+
+.gallery-card.is-linked:hover .archive-cover-panel-a,
+.gallery-card.is-linked:hover .archive-cover-sheet-a,
+.gallery-card.is-linked:hover .archive-cover-art-a {
+  filter: none;
+  transform: rotate(-8deg) translateY(-2%);
+}
+
+.gallery-card.is-linked:hover .archive-cover-panel-b,
+.gallery-card.is-linked:hover .archive-cover-sheet-c,
+.gallery-card.is-linked:hover .archive-cover-game-b {
+  filter: none;
+  transform: rotate(9deg) translateY(-2%);
+}
+
+.gallery-card.is-linked:hover .archive-cover-bg {
+  transform: scale(1.03);
+}
