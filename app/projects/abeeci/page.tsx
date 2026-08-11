@@ -185,10 +185,6 @@ export default function AbeeciCaseStudy() {
             <strong>UX/UI Designer<br />Illustrator</strong>
           </div>
           <div>
-            <small>PHẠM VI</small>
-            <strong>Product UI<br />Visual Assets</strong>
-          </div>
-          <div>
             <small>NỀN TẢNG</small>
             <strong>Mobile App</strong>
           </div>
