@@ -89,19 +89,18 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
             sizes="100vw"
             src={coverImage}
           />
-          <span>{collection.title} · {String(collection.images.length).padStart(2, "0")} VISUALS</span>
+          <span>{collection.title}</span>
         </figure>
       </section>
 
       <section className="collection-project-intro paper-noise">
-        <span>PROJECT INTRO / {String(collection.images.length).padStart(2, "0")} VISUALS</span>
+        <span>PROJECT INTRO</span>
         <h2>{collection.caseStudy ? <>A learning brand<br /><em>built around wonder.</em></> : <>A visual archive<br /><em>with one clear voice.</em></>}</h2>
         <div>
           <p>{collection.description}</p>
           <dl>
             <div><dt>TYPE</dt><dd>{collection.type}</dd></div>
             <div><dt>FIELD</dt><dd>{collection.category}</dd></div>
-            <div><dt>OUTPUT</dt><dd>{collection.images.length} visuals</dd></div>
           </dl>
         </div>
       </section>
@@ -240,7 +239,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
       )}
 
       <div className="collection-work-heading">
-        <span>{collection.caseStudy ? "05 / MY PROJECT SCREENS" : "SELECTED WORK"} · {String(collection.images.length).padStart(2, "0")} VISUALS</span>
+        <span>{collection.caseStudy ? "05 / MY PROJECT SCREENS" : "SELECTED WORK"}</span>
         <h2>{collection.caseStudy ? <>Playful interfaces.<br /><em>Clear learning moments.</em></> : <>Selected work<br /><em>in application.</em></>}</h2>
       </div>
 
