@@ -369,43 +369,6 @@ export default function Home() {
         </a>
       </section>
 
-      <section className="mission" id="mission">
-        <div className="mission-head reveal">
-          <div>
-            <h2>Sứ mệnh</h2>
-          </div>
-          <p>MAKE THE EVERYDAY<br /><em>FEEL LESS ORDINARY.</em></p>
-        </div>
-
-        <div className="mission-body">
-          <div className="mission-figure mission-figure-original reveal">
-            <div className="mission-character-rig" role="img" aria-label="Nhân vật kiếm sĩ do Huy Hoàng minh họa">
-              <img className="mission-rig-base" src="/mission-character-rig-base.png" alt="" />
-              {(["left-hand", "sword-arm", "left-leg", "right-leg"] as const).map((part) => (
-                <span className={`mission-rig-part mission-rig-part-${part}`} key={part}>
-                  <img className="mission-rig-cover" src={`/mission-rig-${part}-cover.png`} alt="" />
-                  <img className="mission-rig-moving" src={`/mission-rig-${part}.png`} alt="" />
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="mission-copy reveal">
-            <p>
-              Tôi tin rằng một sản phẩm số tốt phải dễ hiểu, hữu ích và có đủ cá tính
-              để người dùng muốn quay lại.
-            </p>
-            <p>
-              Nền tảng 2D Art giúp tôi tạo ra giao diện không chỉ dễ sử dụng mà còn có
-              thế giới hình ảnh nhất quán, giàu cảm xúc và dễ ghi nhớ.
-            </p>
-          </div>
-        </div>
-
-        <span className="mission-shape mission-shape-one" aria-hidden="true" />
-        <span className="mission-shape mission-shape-two" aria-hidden="true" />
-        <span className="mission-shape mission-shape-three" aria-hidden="true" />
-      </section>
-
       <section className="work paper-noise" id="work">
         <div className="section-heading section-heading-dark reveal">
           <span className="heading-star">✦</span>
