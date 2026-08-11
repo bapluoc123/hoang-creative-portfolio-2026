@@ -100,7 +100,6 @@ export default function MoodPage() {
 
         <div className="mood-hero-meta">
           <div><small>VAI TRÒ</small><strong>UX/UI Designer</strong></div>
-          <div><small>PHẠM VI</small><strong>UX Flow · UI · Design System</strong></div>
           <div><small>NỀN TẢNG</small><strong>Mobile · iOS</strong></div>
         </div>
 
