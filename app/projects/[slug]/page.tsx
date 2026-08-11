@@ -74,10 +74,6 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
             <strong>{role}</strong>
           </div>
           <div>
-            <small>PHẠM VI</small>
-            <strong>{collection.type}</strong>
-          </div>
-          <div>
             <small>NỀN TẢNG</small>
             <strong>{platform}</strong>
           </div>
@@ -100,10 +96,6 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
         <h2>{collection.caseStudy ? <>A learning brand<br /><em>built around wonder.</em></> : <>A visual archive<br /><em>with one clear voice.</em></>}</h2>
         <div>
           <p>{collection.description}</p>
-          <dl>
-            <div><dt>TYPE</dt><dd>{collection.type}</dd></div>
-            <div><dt>FIELD</dt><dd>{collection.category}</dd></div>
-          </dl>
         </div>
       </section>
 
@@ -214,19 +206,30 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
           ))}
         </section>
       ) : (
-        <section className="collection-gallery" aria-label={`Hình ảnh dự án ${collection.title}`}>
+        <section className={`collection-gallery${isElihighKids ? " is-elihigh-gallery" : ""}`} aria-label={`Hình ảnh dự án ${collection.title}`}>
           {collection.images.map((image, index) => (
             <figure
-              className={index === 0 ? "collection-shot is-featured" : "collection-shot"}
+              className={isElihighKids ? "collection-shot" : (index === 0 ? "collection-shot is-featured" : "collection-shot")}
               key={image}
             >
-              <Image
-                alt={`${collection.title} — hình ${index + 1}`}
-                fill
-                priority={index === 0}
-                sizes={index === 0 ? "100vw" : "(max-width: 720px) 100vw, 50vw"}
-                src={image}
-              />
+              {isElihighKids ? (
+                <Image
+                  alt={`${collection.title} — hình ${index + 1}`}
+                  height={1754}
+                  priority={index === 0}
+                  sizes="(max-width: 720px) 100vw, 50vw"
+                  src={image}
+                  width={1240}
+                />
+              ) : (
+                <Image
+                  alt={`${collection.title} — hình ${index + 1}`}
+                  fill
+                  priority={index === 0}
+                  sizes={index === 0 ? "100vw" : "(max-width: 720px) 100vw, 50vw"}
+                  src={image}
+                />
+              )}
               <figcaption>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <span>{collection.type}</span>
