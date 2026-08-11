@@ -180,7 +180,6 @@ export default function AuroradotPage() {
 
         <div className="aurora-hero-meta">
           <div><small>VAI TRÒ</small><strong>UX/UI Designer<br />Illustrator</strong></div>
-          <div><small>PHẠM VI</small><strong>Product · Design system</strong></div>
           <div><small>HỆ SINH THÁI</small><strong>Parent · Teacher · Kid</strong></div>
         </div>
 
