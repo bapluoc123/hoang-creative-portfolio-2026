@@ -61,6 +61,7 @@ Kiểm tra gồm: ảnh lỗi, tràn ngang, cover/card, gallery Elihigh, hero m�
 - `app/projects/[slug]/page.tsx`
 - `app/responsive-system.css`
 - `public/image-audit.html`
+- `recovery/2026-08-11-cloudflare-pages/tools/` (script patch artifact và manifest tải xuống)
 
 ## Giới hạn và bản recovery local
 
