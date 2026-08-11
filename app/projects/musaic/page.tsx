@@ -94,7 +94,6 @@ export default function MusaicPage() {
 
         <div className="musaic-hero-meta">
           <div><small>VAI TRÒ</small><strong>UX/UI Designer</strong></div>
-          <div><small>PHẠM VI</small><strong>Product Flow · UI · Design System</strong></div>
           <div><small>NỀN TẢNG</small><strong>Mobile App</strong></div>
         </div>
 
