@@ -78,7 +78,6 @@ export default function FixNowCaseStudy() {
           </p>
           <dl>
             <div><dt>ĐỐI TƯỢNG</dt><dd>Người đi làm bận rộn và hộ gia đình tại các đô thị lớn.</dd></div>
-            <div><dt>PHẠM VI</dt><dd>Research · IA · User Flow · Design System · UI · Prototype</dd></div>
             <div><dt>ĐÓNG GÓP</dt><dd>Dẫn dắt UX, xây dựng cấu trúc sản phẩm và trực tiếp thiết kế giao diện.</dd></div>
           </dl>
         </div>
