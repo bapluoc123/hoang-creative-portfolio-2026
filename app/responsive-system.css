@@ -537,3 +537,89 @@
     overflow-wrap: anywhere;
   }
 }
+
+/* Portfolio QA fixes — 2026-08-11 */
+.work-list :is(.mood-work-visual, .auroradot-work-visual) > .provided-cover {
+  height: 100%;
+  inset: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+}
+
+.work-list :is(.mood-work-visual, .auroradot-work-visual) > .provided-cover > img {
+  display: block;
+  height: 100%;
+  inset: 0;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  width: 100%;
+}
+
+.collection-project-intro > div > p {
+  margin-bottom: 0;
+}
+
+.collection-gallery.is-elihigh-gallery {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.is-elihigh-gallery .collection-shot {
+  display: flex;
+  flex-direction: column;
+  grid-column: auto;
+  min-height: 0;
+}
+
+.is-elihigh-gallery .collection-shot img {
+  height: auto;
+  object-fit: contain;
+  padding: 0;
+  position: static;
+  width: 100%;
+}
+
+.is-elihigh-gallery .collection-shot figcaption {
+  bottom: auto;
+  left: auto;
+  min-height: 52px;
+  position: static;
+  right: auto;
+}
+
+.is-elihigh-gallery .collection-shot:hover img {
+  transform: none;
+}
+
+@media (min-width: 721px) {
+  .mood-hero-meta,
+  .aurora-hero-meta,
+  .musaic-hero-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .collection-gallery.is-elihigh-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .fix-case-hero > .fix-case-hero-meta {
+    display: grid;
+    margin-top: 48px;
+  }
+
+  .collection-case-hero > .fix-case-hero-meta {
+    margin-top: 55px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .hero-title {
+    translate: clamp(0px, calc((100vw - 1600px) * .625), 176px) 0;
+  }
+}
