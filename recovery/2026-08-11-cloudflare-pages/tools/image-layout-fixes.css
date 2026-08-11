@@ -1,0 +1,93 @@
+/* hoang-image-layout-fixes-v1 */
+
+/* Elihigh consists of 18 portrait boards with the same 1240 / 1754 ratio. */
+.collection-gallery[aria-label*="ELIHIGH KIDS"] {
+  align-items: start;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.collection-gallery[aria-label*="ELIHIGH KIDS"] .collection-shot,
+.collection-gallery[aria-label*="ELIHIGH KIDS"] .collection-shot.is-featured {
+  display: flex;
+  flex-direction: column;
+  grid-column: auto;
+  min-height: 0;
+}
+
+.collection-gallery[aria-label*="ELIHIGH KIDS"] .collection-shot > img {
+  aspect-ratio: 1240 / 1754;
+  height: auto !important;
+  inset: auto !important;
+  max-width: none;
+  object-fit: contain !important;
+  object-position: center;
+  padding: 0 !important;
+  position: static !important;
+  transform: none !important;
+  width: 100% !important;
+}
+
+.collection-gallery[aria-label*="ELIHIGH KIDS"] .collection-shot figcaption {
+  bottom: auto;
+  flex: 0 0 auto;
+  left: auto;
+  position: static;
+  right: auto;
+  width: 100%;
+}
+
+@media (max-width: 720px) {
+  .collection-gallery[aria-label*="ELIHIGH KIDS"] {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Keep the three-word hero title centered once the desktop canvas grows past 1440px. */
+@media (min-width: 1441px) {
+  .hero-title {
+    --hero-title-center-offset: max(6.8vw, calc(20vw - 231px));
+    translate: clamp(
+        0px,
+        calc((100vw - 1440px) * 0.68),
+        var(--hero-title-center-offset)
+      )
+      0;
+  }
+}
+
+/* Project metadata stays balanced after removing the redundant scope column. */
+@media (min-width: 721px) {
+  :is(.mood-hero-meta, .aurora-hero-meta, .musaic-hero-meta) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* The shared case-study template used to hide its role metadata on small screens. */
+@media (max-width: 640px) {
+  .fix-case-hero > .fix-case-hero-meta {
+    display: grid;
+    margin-top: 48px;
+  }
+
+  .collection-case-hero > .fix-case-hero-meta {
+    margin-top: 55px;
+  }
+}
+
+.collection-project-intro > div > p {
+  margin-bottom: 0;
+}
+
+/* Compatibility for an already-running worker; these selectors match only the old 3-row markup. */
+:is(
+    .abeeci-hero-meta,
+    .aurora-hero-meta,
+    .mood-hero-meta,
+    .musaic-hero-meta,
+    .collection-case-hero .fix-case-hero-meta
+  )
+  > div:nth-child(2):not(:last-child),
+.fix-case-overview-copy dl > div:nth-child(2):not(:last-child),
+.collection-project-intro dl {
+  display: none;
+}
