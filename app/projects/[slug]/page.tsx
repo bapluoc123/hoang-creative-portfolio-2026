@@ -34,8 +34,10 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
 
   const collection = curatedCollections[collectionIndex];
   const nextCollection = curatedCollections[(collectionIndex + 1) % curatedCollections.length];
-  const role = collection.category === "UI/UX"
-    ? "UX/UI Designer"
+  const role = collection.slug === "elihigh-kids"
+    ? "UX/UI Designer · Illustrator"
+    : collection.category === "UI/UX"
+      ? "UX/UI Designer"
     : collection.category === "2D GAME ART"
       ? "2D Artist / Visual Designer"
       : "Illustrator / Visual Artist";
@@ -132,76 +134,9 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
             </div>
           </section>
 
-          <section className="elihigh-world">
-            <div className="elihigh-world-heading">
-              <span>02 / BRAND WORLD</span>
-              <h2>A rainbow world<br /><em>powered by learning.</em></h2>
-              <p>
-                Trong brand film, các người bạn Elihigh giải bài tập tiếng Hàn, Toán, Tiếng Anh và Coding để thu thập
-                những viên ngọc cầu vồng, với sự hỗ trợ của các tiên mây. Cách kể chuyện này biến “hoàn thành bài học”
-                thành một cuộc phiêu lưu có mục tiêu và phần thưởng.
-              </p>
-            </div>
-            <div className="elihigh-world-grid">
-              {collection.brandImages.slice(0, 4).map((image, index) => (
-                <figure className={`is-${index + 1}`} key={image}>
-                  <Image alt={`Thế giới thương hiệu Elihigh Kids ${index + 1}`} fill sizes="(max-width: 720px) 100vw, 50vw" src={image} />
-                </figure>
-              ))}
-            </div>
-          </section>
-
-          <section className="elihigh-mascots">
-            <div className="elihigh-mascot-copy">
-              <span>03 / MASCOT SYSTEM</span>
-              <h2>Friendly faces.<br /><em>Safer first steps.</em></h2>
-              <p>
-                Bộ nhân vật do Studio Delpic phát triển để đồng hành cùng quá trình học tập và trưởng thành của trẻ.
-                Mỗi nhân vật có silhouette, màu sắc và tính cách riêng, giúp tăng hứng thú học tập đồng thời truyền tải
-                tinh thần hợp tác và giải quyết vấn đề.
-              </p>
-            </div>
-            <div className="elihigh-mascot-grid">
-              <figure className="is-pangi is-2d-character">
-                <Image alt="Nhân vật Pang-i trong bộ character design 2D của Elihigh Kids" fill sizes="(max-width: 720px) 100vw, 34vw" src="/projects/drive-curated/elihigh-kids/mascot-pangi-2d-official.webp" />
-                <figcaption><strong>PANG-I</strong><span>BRIGHT THINKER</span></figcaption>
-              </figure>
-              <figure className="is-buzzbee is-2d-character">
-                <Image alt="Nhân vật Buzzbee trong bộ character design 2D của Elihigh Kids" fill sizes="(max-width: 720px) 100vw, 34vw" src="/projects/drive-curated/elihigh-kids/mascot-buzzbee-2d-official.webp" />
-                <figcaption><strong>BUZZBEE</strong><span>QUICK EXPLORER</span></figcaption>
-              </figure>
-              <figure className="is-toto is-2d-character">
-                <Image alt="Nhân vật Toto trong bộ character design 2D của Elihigh Kids" fill sizes="(max-width: 720px) 100vw, 34vw" src="/projects/drive-curated/elihigh-kids/mascot-toto-2d-official.webp" />
-                <figcaption><strong>TOTO</strong><span>CURIOUS GUIDE</span></figcaption>
-              </figure>
-              <figure className="is-oki is-2d-character">
-                <Image alt="Nhân vật Oki trong bộ character design 2D của Elihigh Kids" fill sizes="(max-width: 720px) 100vw, 34vw" src="/projects/drive-curated/elihigh-kids/mascot-oki-2d-official.webp" />
-                <figcaption><strong>OKI</strong><span>CREATIVE SPARK</span></figcaption>
-              </figure>
-              <figure className="is-dinokung is-2d-character">
-                <Image alt="Nhân vật Dino-kung trong bộ character design 2D của Elihigh Kids" fill sizes="(max-width: 720px) 100vw, 34vw" src="/projects/drive-curated/elihigh-kids/mascot-dinokung-2d-clean.webp" />
-                <figcaption><strong>DINO-KUNG</strong><span>PLAYFUL COMPANION</span></figcaption>
-              </figure>
-              <figure className="is-pupu is-2d-character">
-                <Image alt="Nhân vật Pupu trong bộ character design 2D của Elihigh Kids" fill sizes="(max-width: 720px) 100vw, 34vw" src="/projects/drive-curated/elihigh-kids/mascot-pupu-2d-official.webp" />
-                <figcaption><strong>PUPU</strong><span>FUNNY SIDEKICK</span></figcaption>
-              </figure>
-            </div>
-            <div className="elihigh-character-source">
-              <span>CHARACTER DESIGN / 2024</span>
-              <p>
-                Case study được công bố ngày 31.05.2024 bởi nhóm tác giả tại Hàn Quốc. Studio Delpic phát triển trọn bộ
-                sáu nhân vật 2D cho chương trình học thông minh Elihigh Kids của Megastudy.
-              </p>
-              <a href="https://www.behance.net/gallery/198442251/Elihigh-Kids-Character-Design" rel="noreferrer" target="_blank">
-                XEM CHARACTER CASE STUDY ↗
-              </a>
-            </div>
-          </section>
-
           <section className="elihigh-learning-system">
             <div className="elihigh-learning-heading">
-              <span>04 / LEARNING SYSTEM</span>
+              <span>02 / LEARNING SYSTEM</span>
               <h2>Many subjects.<br /><em>One playful language.</em></h2>
             </div>
             <div className="elihigh-subject-grid">
@@ -239,7 +174,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
       )}
 
       <div className="collection-work-heading">
-        <span>{collection.caseStudy ? "05 / MY PROJECT SCREENS" : "SELECTED WORK"}</span>
+        <span>{collection.caseStudy ? "03 / MY PROJECT SCREENS" : "SELECTED WORK"}</span>
         <h2>{collection.caseStudy ? <>Playful interfaces.<br /><em>Clear learning moments.</em></> : <>Selected work<br /><em>in application.</em></>}</h2>
       </div>
 
