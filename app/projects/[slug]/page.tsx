@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { curatedCollections } from "../../collection-data";
 import { CustomCursor } from "../../custom-cursor";
+import { BrandLogo } from "../../brand-logo";
 
 type CollectionPageProps = {
   params: Promise<{ slug: string }>;
@@ -46,13 +47,14 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
   const isElihighKids = collection.slug === "elihigh-kids";
   const coverImage = isElihighKids
     ? "/projects/drive-curated/elihigh-kids/behance-cover.jpg"
-    : collection.images[0];
+    : collection.coverImage ?? collection.images[0];
+  const hasProvidedCover = Boolean(collection.coverImage);
 
   return (
     <main className={`fix-case collection-page collection-case tone-${collection.tone}`}>
       <CustomCursor />
       <header className="fix-case-nav collection-case-nav">
-        <Link className="fix-case-brand" href="/" aria-label="Về trang chủ">H+</Link>
+        <Link className="fix-case-brand" href="/" aria-label="Về trang chủ"><BrandLogo compact /></Link>
         <span>{String(collectionIndex + 1).padStart(2, "0")} / PROJECT CASE STUDY</span>
         <Link href="/projects">← TẤT CẢ DỰ ÁN</Link>
       </header>
@@ -79,7 +81,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
           </div>
         </div>
 
-        <figure className={`fix-case-hero-visual collection-case-cover${isElihighKids ? " is-elihigh-cover" : ""}`}>
+        <figure className={`fix-case-hero-visual collection-case-cover${isElihighKids ? " is-elihigh-cover" : ""}${hasProvidedCover ? " is-provided-cover" : ""}`}>
           <Image
             alt={`${collection.title} — project cover`}
             fill

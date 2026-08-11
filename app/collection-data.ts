@@ -8,6 +8,7 @@ export type CuratedCollection = {
   description: string;
   intro: string;
   images: string[];
+  coverImage?: string;
   chapters?: Array<{
     title: string;
     type: string;
@@ -117,7 +118,7 @@ const sourceCollections: CuratedCollection[] = [
   },
   {
     slug: "editorial-illustration",
-    title: "EDITORIAL ILLUSTRATIONS",
+    title: "ILLUSTRATIONS",
     type: "Narrative Illustration",
     category: "ILLUSTRATION",
     description: "Tuyển tập minh họa kể chuyện với màu sắc nhẹ và giàu cảm xúc.",
@@ -127,7 +128,7 @@ const sourceCollections: CuratedCollection[] = [
   },
   {
     slug: "manga-color-studies",
-    title: "MANGA COLOR STUDIES",
+    title: "ANIME & MANGA PROJECTS",
     type: "Anime & Manga Studies",
     category: "ILLUSTRATION",
     description: "Nghiên cứu line art, ánh sáng và diễn họa nhân vật manga.",
@@ -240,14 +241,29 @@ export const curatedCollections: CuratedCollection[] = [
   source("elihigh-kids"),
   mergedCollection({
     slug: "character-worlds-fantasy",
+    coverImage: "/projects/covers/character-worlds-fantasy.png",
     title: "CHARACTER WORLDS & FANTASY",
     type: "Character Design · Concept Art · Environment",
     category: "2D GAME ART",
-    description: "Một tuyển tập lớn về thiết kế nhân vật, biểu cảm và xây dựng thế giới, trải dài từ truyện cổ tích đến fantasy game.",
-    intro: "Bốn chương cho thấy quá trình phát triển nhân vật ở nhiều cấp độ: nghiên cứu biểu cảm, xây dựng cast, tạo silhouette và đặt nhân vật vào một thế giới có bối cảnh riêng.",
+    description: "Các dự án tập trung vào thiết kế nhân vật, từ nghiên cứu tạo hình và biểu cảm đến xây dựng bối cảnh.",
+    intro: "Các project cho thấy quá trình phát triển nhân vật, từ nghiên cứu, đến xây dựng, tạo silhouette và bối cảnh của nhân vật",
     chapters: [
-      chapter("little-red-riding-hood", "Thiết kế nhân vật và bối cảnh cho thế giới Cô bé quàng khăn đỏ."),
-      chapter("character-explorations", "Các nghiên cứu biểu cảm, hình khối và cá tính trước khi hoàn thiện nhân vật."),
+      {
+        ...chapter("little-red-riding-hood", "Thiết kế nhân vật và bối cảnh cho thế giới Cô bé quàng khăn đỏ."),
+        images: [
+          ...source("little-red-riding-hood").images.filter(
+      (image) => !["06.webp", "07.webp", "08.webp", "09.webp", "11.webp", "12.webp", "13.webp"].some((file) => image.endsWith(file)),
+          ),
+          `${assetRoot}/character-explorations/04.webp`,
+          `${assetRoot}/little-red-riding-hood/red-riding-hood-avatar.jpg`,
+          `${assetRoot}/little-red-riding-hood/grandmother-avatar.jpg`,
+          `${assetRoot}/little-red-riding-hood/wolf-avatar.jpg`,
+        ],
+      },
+      {
+        ...chapter("character-explorations", "Các nghiên cứu biểu cảm, hình khối và cá tính trước khi hoàn thiện nhân vật."),
+        images: source("character-explorations").images.filter((_, index) => index !== 3),
+      },
       chapter("god-of-heaven", "Đội hình nhân vật fantasy được phát triển từ silhouette đến trang phục và key visual."),
       chapter("the-purgers", "Một character system gồm key art, exploration và turnaround cho game."),
     ],
@@ -256,13 +272,25 @@ export const curatedCollections: CuratedCollection[] = [
   }),
   mergedCollection({
     slug: "illustration-manga-studies",
-    title: "ILLUSTRATION & MANGA STUDIES",
+    coverImage: "/projects/covers/illustration-manga-studies.png",
+    title: "ILLUSTRATION / MANGA",
     type: "Editorial · Portrait · Anime & Manga",
     category: "ILLUSTRATION",
-    description: "Tuyển tập minh họa cá nhân kết hợp kể chuyện, chân dung, line art và nghiên cứu màu theo ngôn ngữ manga.",
-    intro: "Ba chương được sắp xếp như một sketchbook mở rộng: từ khoảnh khắc kể chuyện giàu cảm xúc, nghiên cứu ánh sáng–màu sắc đến diễn họa chân dung.",
+    description: "Tuyển tập minh họa cá nhân, tập trung vào bố cục, nhân vật và cách xử lý màu.",
+    intro: "Ba phần gồm minh họa, họa sĩ hoạt hình, manga và chân dung.",
     chapters: [
-      chapter("editorial-illustration", "Những minh họa kể chuyện với nhịp nhẹ, màu sắc mềm và cảm xúc đời thường."),
+      {
+        ...chapter("editorial-illustration", "Những minh họa kể chuyện với nhịp nhẹ, màu sắc mềm và cảm xúc đời thường."),
+        images: [
+          ...source("editorial-illustration").images.filter(
+            (image) => !["04.webp", "05.webp"].some((file) => image.endsWith(file)),
+          ),
+          `${assetRoot}/little-red-riding-hood/06.webp`,
+          `${assetRoot}/little-red-riding-hood/09.webp`,
+          `${assetRoot}/little-red-riding-hood/11.webp`,
+          `${assetRoot}/little-red-riding-hood/12.webp`,
+        ],
+      },
       chapter("manga-color-studies", "Nghiên cứu line art, ánh sáng, biểu cảm và các hướng tô màu nhân vật manga."),
       chapter("portrait-fan-art", "Các hướng diễn họa chân dung từ sketch đến digital painting."),
     ],
@@ -271,26 +299,34 @@ export const curatedCollections: CuratedCollection[] = [
   }),
   mergedCollection({
     slug: "kids-game-art-ui",
-    title: "KIDS GAME ART & UI",
+    coverImage: "/projects/covers/kids-game-art-ui.png",
+    title: "KID SONG & GAME UI",
     type: "Kids Environment · Puzzle UI · Mobile Game",
     category: "2D GAME ART",
-    description: "Một collection về thiết kế game dành cho trẻ em, kết hợp thế giới minh họa, đạo cụ và hệ giao diện tương tác.",
-    intro: "Ba chương đi từ environment và props nhiều màu sắc đến puzzle interface và những thử nghiệm HUD cho mobile game, cùng giữ ưu tiên đọc nhanh và phản hồi trực quan.",
+    description: "Tuyển tập dự án game dành cho trẻ em, tập trung vào minh họa và thiết kế giao diện.",
+    intro: "Ba phần gồm thiết kế bối cảnh, puzzle và giao diện cho game mobile.",
     chapters: [
       chapter("kid-song-worlds", "Bối cảnh và đạo cụ giàu màu sắc dành cho nội dung âm nhạc trẻ em."),
       chapter("cake-puzzle-ui", "Hệ giao diện puzzle gồm board, vật phẩm và trạng thái phần thưởng."),
-      chapter("mobile-game-ui", "Các màn hình, HUD và thử nghiệm tương tác cho game mobile."),
+      {
+        ...chapter("mobile-game-ui", "Các màn hình, HUD và thử nghiệm tương tác cho game mobile."),
+        images: [
+          ...source("mobile-game-ui").images,
+          `${assetRoot}/little-red-riding-hood/13.webp`,
+        ],
+      },
     ],
     tone: "pink",
     imageFit: "contain",
   }),
   mergedCollection({
     slug: "visual-storytelling-publishing",
-    title: "VISUAL STORYTELLING & PUBLISHING",
-    type: "Storyboard · Book Cover · Publishing",
+    coverImage: "/projects/covers/visual-storytelling-publishing.png",
+    title: "STORYBOARD & BOOK ILLUSTRATION",
+    type: "Storyboard · Book Cover",
     category: "ILLUSTRATION",
-    description: "Tuyển tập kể chuyện bằng hình ảnh, từ nhịp cảnh storyboard đến thiết kế bìa và ứng dụng xuất bản.",
-    intro: "Hai chương nối quá trình kể chuyện từ khung hình thô đến sản phẩm hoàn thiện: staging, góc máy, minh họa nhân vật, dàn trang và mockup.",
+    description: "Tuyển tập storyboard, minh họa sách và thiết kế bìa.",
+    intro: "Hai phần gồm storyboard và thiết kế sách, từ phác thảo đến sản phẩm hoàn chỉnh.",
     chapters: [
       chapter("storyboard-frames", "Storyboard tập trung vào staging, chuyển động, góc máy và nhịp kể."),
       chapter("book-cover-illustration", "Thiết kế bìa, minh họa và mockup cho nội dung sách thiếu nhi."),

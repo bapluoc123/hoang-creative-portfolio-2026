@@ -72,11 +72,11 @@
 }
 
 .mood-hero h1 {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-be-vietnam-pro), "Arial Black", Arial, sans-serif;
   font-size: clamp(5rem, 14vw, 14rem);
   font-weight: 900;
-  letter-spacing: -0.095em;
-  line-height: 0.72;
+  letter-spacing: -0.055em;
+  line-height: 0.78;
   margin: 0;
 }
 
@@ -86,6 +86,19 @@
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 400;
   margin-left: 0.54em;
+}
+
+.mood-better-word {
+  display: block;
+  white-space: nowrap;
+}
+
+.mood-better-word > span {
+  display: inline-block;
+}
+
+.mood-better-word > span:nth-child(4) {
+  margin-left: .045em;
 }
 
 .mood-hero-copy p {
@@ -848,10 +861,10 @@
 
 .aurora-hero h1 {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(5.5rem, 14vw, 14rem);
+  font-size: clamp(5.5rem, 13vw, 13rem);
   font-weight: 400;
-  letter-spacing: -0.085em;
-  line-height: 0.72;
+  letter-spacing: -0.025em;
+  line-height: 0.84;
   margin: 0;
 }
 
@@ -859,6 +872,11 @@
   display: block;
   font-weight: 400;
   margin-left: 0.9em;
+  margin-top: .14em;
+}
+
+.aurora-hero h1 > span {
+  display: block;
 }
 
 .aurora-hero-copy p {
@@ -1212,9 +1230,11 @@
 }
 
 .aurora-chapter h2 span {
-  font-size: 0.32em;
-  margin-inline: 0.04em;
-  vertical-align: middle;
+  display: inline-block;
+  font-size: 0.42em;
+  line-height: 1;
+  margin-inline: 0.14em;
+  vertical-align: 0.18em;
 }
 
 .aurora-chapter > p {
@@ -1227,6 +1247,17 @@
 .aurora-chapter-ux {
   background: var(--aurora-ink);
   color: var(--aurora-cream);
+  column-gap: clamp(3.5rem, 6vw, 7rem);
+  grid-template-columns: 0.3fr minmax(0, 1.5fr) minmax(20rem, 0.8fr);
+}
+
+.aurora-chapter-ux h2 {
+  font-size: clamp(6rem, 15vw, 15rem);
+  white-space: nowrap;
+}
+
+.aurora-chapter-ux > p {
+  padding-left: clamp(1rem, 2vw, 2rem);
 }
 
 .aurora-chapter-illustration {
@@ -1889,17 +1920,6 @@
   text-decoration: none;
 }
 
-.aurora-outcome-note {
-  align-self: start;
-  border: 1px solid rgb(84 59 52 / 32%);
-  border-radius: 999px;
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  padding: 0.9rem 1.1rem;
-  white-space: nowrap;
-}
-
 .collection-next.aurora-next {
   background: var(--aurora-cream);
   color: var(--aurora-ink);
@@ -2242,18 +2262,13 @@ button {
   z-index: 1000;
 }
 
-.intro-mark {
+.intro-logo {
   animation: intro-mark .95s var(--spring) both;
-  font-family: var(--font-display-serif), serif;
-  font-size: clamp(7rem, 18vw, 16rem);
-  font-weight: 900;
-  letter-spacing: -.16em;
-  line-height: .7;
-}
-
-.intro-mark span {
-  color: var(--yellow);
-  -webkit-text-stroke: 2px var(--ink);
+  display: block;
+  height: auto;
+  max-width: 320px;
+  object-fit: contain;
+  width: clamp(180px, 22vw, 320px);
 }
 
 .intro p {
@@ -2414,9 +2429,24 @@ button {
 .brand {
   align-items: center;
   display: flex;
-  gap: 9px;
   position: relative;
   z-index: 302;
+}
+
+.brand-logo {
+  display: block;
+  height: 47px;
+  max-height: 47px;
+  max-width: 72px;
+  object-fit: contain;
+  width: 72px;
+}
+
+.brand-logo.is-compact {
+  height: 36px;
+  max-height: 36px;
+  max-width: 54px;
+  width: 54px;
 }
 
 .brand-mark {
@@ -2558,8 +2588,7 @@ button {
 }
 
 .site-header.is-scrolled .brand {
-  color: #fff;
-  mix-blend-mode: difference;
+  mix-blend-mode: normal;
 }
 
 .site-header.is-scrolled .menu-toggle {
@@ -3024,20 +3053,6 @@ button {
   transform: rotate(-14deg);
   width: 25%;
   z-index: 1;
-}
-
-.figure-photo-note {
-  background: var(--ink);
-  bottom: 4%;
-  color: var(--paper);
-  font-family: var(--font-geist-mono), monospace;
-  font-size: .54rem;
-  left: 4%;
-  letter-spacing: .12em;
-  padding: 9px 12px;
-  position: absolute;
-  transform: rotate(-3deg);
-  z-index: 4;
 }
 
 .figure-photo-cross {
@@ -3759,7 +3774,15 @@ mark {
 
 .work-card:hover .work-visual {
   background-size: 106%;
-  filter: saturate(1.06) contrast(1.02);
+  filter: brightness(1.08) saturate(1.06) contrast(1.02);
+}
+
+.work-visual img {
+  transition: transform .7s cubic-bezier(.22, 1, .36, 1);
+}
+
+.work-card:hover .work-visual img {
+  transform: scale(1.045);
 }
 
 .elihigh-work-visual {
@@ -3957,6 +3980,19 @@ mark {
   position: relative;
 }
 
+.gallery-card-visual.is-archive-cover {
+  aspect-ratio: 1600 / 830;
+}
+
+.gallery-card-visual.is-archive-cover .archive-cover {
+  height: 100%;
+  width: 100%;
+}
+
+.gallery-card-visual.is-archive-cover img {
+  object-fit: contain;
+}
+
 .gallery-card-visual img {
   display: block;
   height: 100%;
@@ -3973,9 +4009,14 @@ mark {
   object-fit: contain;
 }
 
-.gallery-card.is-linked:hover .gallery-card-visual img {
-  filter: saturate(1.08);
-  transform: scale(1.035);
+.gallery-card:hover .gallery-card-visual img {
+  filter: brightness(1.08) saturate(1.08);
+  transform: scale(1.045);
+}
+
+.gallery-card:hover .gallery-card-visual.is-archive-cover img {
+  filter: brightness(1.08) saturate(1.08);
+  transform: scale(1.045);
 }
 
 .auroradot-card-cover,
@@ -4614,6 +4655,21 @@ mark {
   z-index: 1;
 }
 
+.abeeci-card-cover.is-showcase-cover::after,
+.abeeci-hero-visual.is-showcase-cover::after {
+  display: none;
+}
+
+.abeeci-card-cover.is-showcase-cover .abeeci-card-cover-copy,
+.abeeci-hero-visual.is-showcase-cover .abeeci-hero-cover-copy {
+  display: none;
+}
+
+.abeeci-card-cover.is-showcase-cover .abeeci-card-cover-bg,
+.abeeci-hero-visual.is-showcase-cover .abeeci-hero-cover-bg {
+  object-position: center !important;
+}
+
 .abeeci-card-cover-bg {
   filter: saturate(1.08);
   height: 100% !important;
@@ -4710,9 +4766,9 @@ mark {
   z-index: 2;
 }
 
-.gallery-card.is-linked:hover .abeeci-card-cover img {
-  filter: none;
-  transform: none;
+.gallery-card:hover .abeeci-card-cover img {
+  filter: brightness(1.08) saturate(1.08);
+  transform: scale(1.045);
 }
 
 .gallery-card-open {
@@ -4747,6 +4803,14 @@ mark {
   letter-spacing: -.04em;
   line-height: 1;
   margin: 0;
+}
+
+.gallery-card-meta.is-title-only {
+  display: block;
+}
+
+.gallery-card-meta.is-title-only h3 {
+  max-width: 100%;
 }
 
 .gallery-card-meta p,
@@ -4871,7 +4935,7 @@ mark {
   font-size: clamp(5rem, 11vw, 12rem);
   font-weight: 400;
   letter-spacing: -.075em;
-  line-height: .72;
+  line-height: 1.06;
   margin: 4vw 0 0;
 }
 
@@ -4939,6 +5003,19 @@ mark {
 
 .projects-gallery-grid .gallery-card-meta {
   border-color: rgba(10,10,10,.3);
+}
+
+.projects-gallery-grid .gallery-card-visual {
+  aspect-ratio: 1600 / 830;
+  min-height: 0;
+}
+
+.projects-gallery-grid .gallery-card-visual > img,
+.projects-gallery-grid .gallery-card-visual > .provided-cover {
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 100%;
 }
 
 .projects-load-more {
@@ -5029,6 +5106,7 @@ mark {
 
   .projects-page-hero h1 {
     font-size: clamp(4.4rem, 24vw, 7rem);
+    line-height: 1.08;
   }
 
   .projects-page-hero > *,
@@ -9111,26 +9189,28 @@ footer {
 }
 
 .abeeci-character-card img {
-  align-self: end;
   display: block;
-  height: 76%;
-  margin: auto auto 10%;
-  max-width: 116%;
+  height: calc(100% - 112px);
+  inset: 42px 14px 70px;
+  margin: 0;
+  max-width: none;
   object-fit: contain;
+  object-position: center bottom;
+  position: absolute;
   transition: transform .7s cubic-bezier(.22, 1, .36, 1);
-  width: 100%;
+  width: calc(100% - 28px);
 }
 
 .abeeci-character-card.is-child img {
-  height: 70%;
-  margin-bottom: 10%;
-  max-width: 100%;
+  height: calc(100% - 112px);
+  margin: 0;
+  max-width: none;
 }
 
 .abeeci-character-card.is-teen img {
-  height: 86%;
-  margin-bottom: 2%;
-  max-width: 110%;
+  height: calc(100% - 112px);
+  margin: 0;
+  max-width: none;
 }
 
 .abeeci-character-card:hover img {
@@ -9623,7 +9703,7 @@ footer {
 
 .collection-case-hero h1 {
   font-size: clamp(5rem, 11vw, 12rem);
-  line-height: .76;
+  line-height: 1.02;
   max-width: 11ch;
   overflow-wrap: anywhere;
 }
@@ -9631,6 +9711,7 @@ footer {
 .collection-case-hero h1.is-long {
   font-size: clamp(4rem, 6.8vw, 8rem);
   hyphens: none;
+  line-height: 1.02;
   max-width: 100%;
   overflow-wrap: normal !important;
   word-break: keep-all;
@@ -9643,6 +9724,25 @@ footer {
 .collection-case-cover img {
   object-fit: contain;
   padding: clamp(22px, 4vw, 72px);
+}
+
+.collection-case-cover.is-provided-cover img,
+.project-new-hero-cover img {
+  object-fit: cover;
+  object-position: center;
+  padding: 0;
+}
+
+.mood-hero-stage.project-new-hero-cover,
+.aurora-hero-stage.project-new-hero-cover {
+  aspect-ratio: 1600 / 830;
+  height: auto;
+  position: relative;
+}
+
+.mood-hero-stage.project-new-hero-cover::before,
+.mood-hero-stage.project-new-hero-cover::after {
+  display: none;
 }
 
 .collection-case-cover.is-elihigh-cover {
@@ -10679,13 +10779,14 @@ footer {
 
   .collection-case-hero h1 {
     font-size: clamp(4.4rem, 20vw, 7rem);
-    line-height: .8;
+    line-height: 1.04;
     margin: 80px 0 48px;
     max-width: 100%;
   }
 
   .collection-case-hero h1.is-long {
     font-size: clamp(3.5rem, 15vw, 5.5rem);
+    line-height: 1.04;
     max-width: 100%;
   }
 

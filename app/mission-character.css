@@ -83,21 +83,6 @@
   animation: mission-right-leg 4.8s ease-in-out infinite;
 }
 
-.mission-character-label {
-  background: var(--ink);
-  bottom: 1.25rem;
-  color: var(--paper);
-  font-family: var(--font-geist-mono), monospace;
-  font-size: .68rem;
-  font-weight: 700;
-  left: 1rem;
-  letter-spacing: .11em;
-  padding: .65rem .9rem;
-  position: absolute;
-  transform: rotate(-1.5deg);
-  z-index: 3;
-}
-
 @keyframes mission-character-breathe {
   0%,
   100% {

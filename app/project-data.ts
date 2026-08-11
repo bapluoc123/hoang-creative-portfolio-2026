@@ -35,7 +35,7 @@ const originalProjects: Project[] = [
     type: "UX/UI Design · 2025",
     description: "Ứng dụng học tập cho trẻ em kết hợp bài học, minigame, phần thưởng và khu vực dành cho phụ huynh.",
     category: "UI/UX",
-    image: "/projects/abeeci-home.png",
+    image: "/projects/abeeci/abeeci-cover-final-v7.png",
     href: "/projects/abeeci",
     featured: true,
     stamp: "EDUCATION",
@@ -68,6 +68,18 @@ const originalProjects: Project[] = [
   },
   {
     number: "05",
+    title: "MUSAIC",
+    type: "UX/UI Design · 2026",
+    description: "Ứng dụng AI tạo nhạc từ hình ảnh, cảm xúc và lựa chọn âm nhạc của người dùng.",
+    category: "UI/UX",
+    image: "/projects/musaic/musaic-cover-generated-v2.png",
+    href: "/projects/musaic",
+    featured: false,
+    stamp: "AI MUSIC APP",
+    tone: "violet",
+  },
+  {
+    number: "06",
     title: "UI SYSTEM STUDY",
     type: "Design System",
     description: "Xây dựng nền tảng, component và trạng thái giao diện.",
@@ -109,4 +121,4 @@ export const allProjects: Project[] = [
 }));
 
 export const featuredProjects = allProjects.filter((project) => project.featured);
-export const projectFilters = ["TẤT CẢ", "UI/UX", "DESIGN SYSTEM", "2D GAME ART", "ILLUSTRATION"] as const;
+export const projectFilters = ["TẤT CẢ", "UI/UX", "2D GAME ART", "ILLUSTRATION"] as const;

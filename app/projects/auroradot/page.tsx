@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "../../unoptimized-image";
 import Link from "next/link";
 import { CustomCursor } from "../../custom-cursor";
+import { BrandLogo } from "../../brand-logo";
 
 export const metadata: Metadata = {
   title: "AURORADOT — Huy Hoàng",
@@ -92,6 +93,42 @@ const uiIllustrationElements = [
   },
 ];
 
+const elementAtlasItems = [
+  { src: "/projects/auroradot/element-atlas/flower-01-foliage.png", label: "BOTANICAL FOLIAGE", format: "portrait" },
+  { src: "/projects/auroradot/element-atlas/flower-sunrise.png", label: "SUNRISE GLOW", format: "icon" },
+  { src: "/projects/auroradot/element-atlas/flower-02-yellow.png", label: "YELLOW BLOOM", format: "portrait" },
+  { src: "/projects/auroradot/element-atlas/flower-03-dark.png", label: "SHADOW FOLIAGE", format: "portrait" },
+  { src: "/projects/auroradot/element-atlas/flower-04-leaves.png", label: "GREEN LEAVES", format: "portrait" },
+  { src: "/projects/auroradot/element-atlas/flower-05-coral.png", label: "CORAL BLOOM", format: "item" },
+  { src: "/projects/auroradot/element-atlas/flower-06-blue.png", label: "BLUE BLOOM", format: "portrait" },
+  { src: "/projects/auroradot/element-atlas/flower-07-bud.png", label: "FLOWER BUD", format: "portrait" },
+  { src: "/projects/auroradot/element-atlas/flower-08-daisy.png", label: "DAISY", format: "portrait" },
+  { src: "/projects/auroradot/element-atlas/flower-09-bloom.png", label: "OPEN BLOOM", format: "portrait" },
+  { src: "/projects/auroradot/element-atlas/flower-moon.png", label: "MOONLIGHT", format: "icon" },
+  { src: "/projects/auroradot/element-atlas/flower-sun.png", label: "SUNLIGHT", format: "item" },
+  { src: "/projects/auroradot/element-atlas/who-am-i.png", label: "WHO AM I", format: "wide" },
+  { src: "/projects/auroradot/element-atlas/family.png", label: "FAMILY", format: "portrait" },
+  { src: "/projects/auroradot/element-atlas/bg-profile.jpg", label: "PROFILE BACKGROUND", format: "wide" },
+  { src: "/projects/auroradot/element-atlas/teacher.png", label: "TEACHER", format: "portrait" },
+  { src: "/projects/auroradot/element-atlas/emotion-overwhelmed.png", label: "OVERWHELMED", format: "icon" },
+  { src: "/projects/auroradot/element-atlas/emotion-tuned-out.png", label: "TUNED OUT", format: "icon" },
+  { src: "/projects/auroradot/element-atlas/emotion-upset.png", label: "UPSET", format: "icon" },
+  { src: "/projects/auroradot/element-atlas/emotion-calm.png", label: "CALM", format: "icon" },
+  { src: "/projects/auroradot/element-atlas/emotion-frustrated.png", label: "FRUSTRATED", format: "icon" },
+  { src: "/projects/auroradot/element-atlas/emotion-happy.png", label: "HAPPY", format: "icon" },
+  { src: "/projects/auroradot/element-atlas/item-doll.png", label: "DOLL", format: "item" },
+  { src: "/projects/auroradot/element-atlas/item-chocolate.png", label: "CHOCOLATE", format: "item" },
+  { src: "/projects/auroradot/element-atlas/item-hamburger.png", label: "HAMBURGER", format: "item" },
+  { src: "/projects/auroradot/element-atlas/item-wacom.png", label: "DRAWING TABLET", format: "item" },
+  { src: "/projects/auroradot/element-atlas/item-pos.png", label: "POS MACHINE", format: "item" },
+  { src: "/projects/auroradot/element-atlas/item-milk.png", label: "MILK", format: "item" },
+  { src: "/projects/auroradot/element-atlas/item-jelly.png", label: "JELLY", format: "item" },
+  { src: "/projects/auroradot/element-atlas/item-ice-cream.png", label: "ICE CREAM", format: "item" },
+  { src: "/projects/auroradot/element-atlas/item-backpack.png", label: "BACKPACK", format: "item" },
+  { src: "/projects/auroradot/element-atlas/item-cake.png", label: "CAKE", format: "item" },
+  { src: "/projects/auroradot/element-atlas/item-blanket.png", label: "BEDTIME BLANKET", format: "item" },
+];
+
 const uxGalleryScreens = [
   { src: "/projects/auroradot/figma-parent-home.png", label: "Parent home", group: "PARENT" },
   { src: "/projects/auroradot/figma-parent-understanding.png", label: "Understanding Aurora", group: "PARENT" },
@@ -122,7 +159,7 @@ export default function AuroradotPage() {
 
       <header className="fix-case-nav aurora-nav">
         <Link className="fix-case-brand" href="/" aria-label="Về trang chủ">
-          H+
+          <BrandLogo compact />
         </Link>
         <span>03 / PRODUCT CASE STUDY</span>
         <Link href="/projects">← TẤT CẢ DỰ ÁN</Link>
@@ -132,7 +169,7 @@ export default function AuroradotPage() {
         <div className="aurora-hero-copy">
           <span>EDTECH · UX/UI DESIGN · ILLUSTRATION · 2026</span>
           <h1>
-            AURORA
+            <span>AURORA</span>
             <em>DOT.</em>
           </h1>
           <p>
@@ -142,46 +179,13 @@ export default function AuroradotPage() {
         </div>
 
         <div className="aurora-hero-meta">
-          <div><small>VAI TRÒ</small><strong>UX/UI · Illustration</strong></div>
+          <div><small>VAI TRÒ</small><strong>UX/UI Designer<br />Illustrator</strong></div>
           <div><small>PHẠM VI</small><strong>Product · Design system</strong></div>
           <div><small>HỆ SINH THÁI</small><strong>Parent · Teacher · Kid</strong></div>
         </div>
 
-        <div className="aurora-hero-stage" aria-label="Các màn hình nổi bật của AURORADOT">
-          <span className="aurora-orbit aurora-orbit-one" />
-          <span className="aurora-orbit aurora-orbit-two" />
-          <div className="aurora-stage-word" aria-hidden="true">GROW</div>
-          <figure className="aurora-stage-phone aurora-stage-phone-left">
-            <Image
-              alt="Trang chủ dành cho phụ huynh trong AURORADOT"
-              fill
-              priority
-              sizes="(max-width: 760px) 48vw, 23vw"
-              src="/projects/auroradot/figma-parent-home.png"
-            />
-          </figure>
-          <figure className="aurora-stage-phone aurora-stage-phone-center">
-            <Image
-              alt="Trang chủ dành cho giáo viên trong AURORADOT"
-              fill
-              priority
-              sizes="(max-width: 760px) 52vw, 24vw"
-              src="/projects/auroradot/figma-teacher-home.png"
-            />
-          </figure>
-          <figure className="aurora-stage-phone aurora-stage-phone-right">
-            <Image
-              alt="Màn hình Understanding Aurora dành cho phụ huynh"
-              fill
-              priority
-              sizes="(max-width: 760px) 48vw, 23vw"
-              src="/projects/auroradot/figma-parent-understanding.png"
-            />
-          </figure>
-          <div className="aurora-stage-caption">
-            <span>ONE SHARED LANGUAGE</span>
-            <span>THREE CONNECTED EXPERIENCES</span>
-          </div>
+        <div className="aurora-hero-stage project-new-hero-cover" aria-label="Ảnh bìa AURORADOT">
+          <Image alt="AURORADOT emotional learning product" fill priority sizes="100vw" src="/projects/covers/auroradot.png" />
         </div>
       </section>
 
@@ -222,7 +226,7 @@ export default function AuroradotPage() {
           <span>CHAPTER 01</span>
           <p>PRODUCT EXPERIENCE</p>
         </div>
-        <h2>UX<span>/</span>UI</h2>
+        <h2>UX<span>—</span>UI</h2>
         <p>Ba vai trò, ba mức thông tin — cùng hướng về một ngôn ngữ chăm sóc nhất quán.</p>
       </section>
 
@@ -452,10 +456,10 @@ export default function AuroradotPage() {
         <div className="aurora-element-atlas">
           <div className="aurora-element-atlas-heading">
             <span>ILL / 03 — ELEMENT ATLAS</span>
-            <strong>20 ELEMENTS FROM THE UI</strong>
+            <strong>33 ORIGINAL ELEMENTS FROM THE UI</strong>
           </div>
           <div className="aurora-element-grid">
-            {uiIllustrationElements.map((element, index) => (
+            {elementAtlasItems.map((element, index) => (
               <figure key={`atlas-${element.src}`}>
                 <div>
                   <Image
@@ -485,7 +489,6 @@ export default function AuroradotPage() {
             trẻ có không gian tham gia, phụ huynh nhìn thấy bức tranh phát triển,
             còn giáo viên có thể ghi nhận và hành động.
           </p>
-          <span className="aurora-outcome-note">FIGMA SOURCE · AURORADOT COPY</span>
         </div>
       </section>
 

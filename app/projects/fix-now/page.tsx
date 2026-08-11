@@ -1,4 +1,5 @@
 import { CustomCursor } from "../../custom-cursor";
+import { BrandLogo } from "../../brand-logo";
 
 const problems = [
   ["01", "Không biết mô tả lỗi", "Người dùng nhìn thấy hiện tượng, nhưng không có đủ kiến thức để gọi đúng tên sự cố."],
@@ -35,7 +36,7 @@ export default function FixNowCaseStudy() {
       <CustomCursor />
 
       <header className="fix-case-nav">
-        <a className="fix-case-brand" data-cursor="VỀ NHÀ" href="/">H+</a>
+        <a className="fix-case-brand" data-cursor="VỀ NHÀ" href="/" aria-label="Về trang chủ"><BrandLogo compact /></a>
         <span>01 / PRODUCT DESIGN CASE STUDY</span>
         <a data-cursor="QUAY LẠI" href="/projects">← TẤT CẢ DỰ ÁN</a>
       </header>
@@ -47,7 +48,7 @@ export default function FixNowCaseStudy() {
           <p>Một trải nghiệm giúp việc tìm thợ, hiểu sự cố và kiểm soát chi phí trở nên rõ ràng hơn.</p>
         </div>
         <div className="fix-case-hero-meta">
-          <div><small>VAI TRÒ</small><strong>Team Lead<br />UI/UX Designer</strong></div>
+          <div><small>VAI TRÒ</small><strong>Team Lead<br />UX/UI Designer</strong></div>
           <div><small>ĐỘI NGŨ</small><strong>03 thành viên</strong></div>
           <div><small>THỜI GIAN</small><strong>2026</strong></div>
         </div>

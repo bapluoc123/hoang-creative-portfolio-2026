@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { CustomCursor } from "../custom-cursor";
 import { ProjectCard } from "../project-card";
 import { allProjects, projectFilters } from "../project-data";
+import { BrandLogo } from "../brand-logo";
 
 const PROJECT_BATCH = 12;
 
@@ -29,7 +30,7 @@ export default function ProjectsPage() {
     <main className="projects-page paper-noise">
       <CustomCursor />
       <header className="projects-page-nav">
-        <a className="projects-brand" data-cursor="VỀ NHÀ" href="/" aria-label="Về trang chủ">H+</a>
+        <a className="projects-brand" data-cursor="VỀ NHÀ" href="/" aria-label="Về trang chủ"><BrandLogo compact /></a>
         <a className="projects-back" data-cursor="QUAY LẠI" href="/#work">← TRANG CHỦ</a>
       </header>
 
@@ -41,8 +42,7 @@ export default function ProjectsPage() {
         <div className="projects-page-summary">
           <strong>{String(allProjects.length).padStart(2, "0")}</strong>
           <p>
-            Kho lưu trữ hình ảnh về UI/UX, design system, 2D game art và illustration.
-            Dự án một ảnh được xem ngay tại đây; case study chuyên sâu sẽ có liên kết riêng.
+            Tổng hợp các dự án khác nhau về UX/UI, 2D Game Art, Illustration, ...
           </p>
         </div>
       </section>

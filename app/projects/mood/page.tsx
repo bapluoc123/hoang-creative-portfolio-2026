@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "../../unoptimized-image";
 import Link from "next/link";
 import { CustomCursor } from "../../custom-cursor";
+import { BrandLogo } from "../../brand-logo";
 
 export const metadata: Metadata = {
   title: "Mood — Better Daily — Huy Hoàng",
@@ -74,7 +75,7 @@ export default function MoodPage() {
 
       <header className="fix-case-nav mood-nav">
         <Link className="fix-case-brand" href="/" aria-label="Về trang chủ">
-          H+
+          <BrandLogo compact />
         </Link>
         <span>03 / PRODUCT CASE STUDY</span>
         <Link href="/projects">← TẤT CẢ DỰ ÁN</Link>
@@ -84,7 +85,11 @@ export default function MoodPage() {
         <div className="mood-hero-copy">
           <span>MENTAL WELLNESS · MOBILE PRODUCT · 2026</span>
           <h1>
-            BETTER
+            <span className="mood-better-word" aria-label="BETTER">
+              {"BETTER".split("").map((letter, index) => (
+                <span aria-hidden="true" key={`${letter}-${index}`}>{letter}</span>
+              ))}
+            </span>
             <em>MOOD.</em>
           </h1>
           <p>
@@ -94,23 +99,13 @@ export default function MoodPage() {
         </div>
 
         <div className="mood-hero-meta">
-          <div><small>VAI TRÒ</small><strong>Product UI/UX Designer</strong></div>
+          <div><small>VAI TRÒ</small><strong>UX/UI Designer</strong></div>
           <div><small>PHẠM VI</small><strong>UX Flow · UI · Design System</strong></div>
           <div><small>NỀN TẢNG</small><strong>Mobile · iOS</strong></div>
         </div>
 
-        <div className="mood-hero-stage" aria-label="Các màn hình tiêu biểu của ứng dụng Mood">
-          <div className="mood-hero-word" aria-hidden="true">mood</div>
-          <figure className="mood-phone mood-phone-left">
-            <Image alt="Màn hình chào mừng ứng dụng Mood" fill priority sizes="30vw" src="/projects/mood/welcome.png" />
-          </figure>
-          <figure className="mood-phone mood-phone-center">
-            <Image alt="Trang chủ ứng dụng Mood" fill priority sizes="34vw" src="/projects/mood/home.png" />
-          </figure>
-          <figure className="mood-phone mood-phone-right">
-            <Image alt="Màn hình check-in cảm xúc của Mood" fill priority sizes="30vw" src="/projects/mood/emotion.png" />
-          </figure>
-          <span className="mood-hero-caption">DESIGNED TO MAKE EMOTIONAL CARE FEEL APPROACHABLE</span>
+        <div className="mood-hero-stage project-new-hero-cover" aria-label="Ảnh bìa ứng dụng Mood">
+          <Image alt="Mood — Better Daily mental wellness app" fill priority sizes="100vw" src="/projects/covers/mood.png" />
         </div>
       </section>
 

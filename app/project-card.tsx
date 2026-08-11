@@ -3,10 +3,17 @@ import type { Project } from "./project-data";
 const archiveCoverTitles = new Set([
   "ELIHIGH KIDS",
   "CHARACTER WORLDS & FANTASY",
-  "ILLUSTRATION & MANGA STUDIES",
-  "KIDS GAME ART & UI",
-  "VISUAL STORYTELLING & PUBLISHING",
+  "ILLUSTRATION / MANGA",
+  "KID SONG & GAME UI",
+  "STORYBOARD & BOOK ILLUSTRATION",
 ]);
+
+const archiveDisplayTitles: Record<string, string> = {
+  "CHARACTER WORLDS & FANTASY": "CHARACTER WORLDS & FANTASY",
+  "ILLUSTRATION / MANGA": "ILLUSTRATION / MANGA",
+  "KID SONG & GAME UI": "KID SONG & GAME UI",
+  "STORYBOARD & BOOK ILLUSTRATION": "STORYBOARD & BOOK ILLUSTRATION",
+};
 
 function ArchiveProjectCover({ title }: { title: string }) {
   if (title === "ELIHIGH KIDS") {
@@ -20,108 +27,54 @@ function ArchiveProjectCover({ title }: { title: string }) {
       </div>
     );
   }
-
-  if (title === "CHARACTER WORLDS & FANTASY") {
-    return (
-      <div className="archive-cover archive-cover-character" aria-label="Character Worlds and Fantasy project cover">
-        <img
-          className="archive-cover-character-image"
-          src="/projects/drive-curated/god-of-heaven/layout-chung.webp"
-          alt=""
-        />
-      </div>
-    );
-  }
-
-  if (title === "ILLUSTRATION & MANGA STUDIES") {
-    return (
-      <div className="archive-cover archive-cover-illustration" aria-label="Illustration and Manga Studies project cover">
-        <img className="archive-cover-bg" src="/projects/drive-curated/editorial-illustration/01.webp" alt="" />
-        <div className="archive-cover-ink" aria-hidden="true" />
-        <img className="archive-cover-art archive-cover-art-a" src="/projects/drive-curated/editorial-illustration/02.webp" alt="" />
-        <img className="archive-cover-art archive-cover-art-b" src="/projects/drive-curated/manga-color-studies/08.webp" alt="" />
-        <img className="archive-cover-art archive-cover-art-c" src="/projects/drive-curated/portrait-fan-art/01.webp" alt="" />
-      </div>
-    );
-  }
-
-  if (title === "KIDS GAME ART & UI") {
-    return (
-      <div className="archive-cover archive-cover-kids-game" aria-label="Kids Game Art and UI project cover">
-        <img className="archive-cover-bg" src="/projects/drive-curated/kid-song-worlds/03.webp" alt="" />
-        <span className="archive-cover-word">LEVEL UP!</span>
-        <img className="archive-cover-prop" src="/projects/drive-curated/kid-song-worlds/01.webp" alt="" />
-        <img className="archive-cover-game archive-cover-game-a" src="/projects/drive-curated/cake-puzzle-ui/01.webp" alt="" />
-        <img className="archive-cover-game archive-cover-game-b" src="/projects/drive-curated/mobile-game-ui/01.webp" alt="" />
-      </div>
-    );
-  }
-
+  const coverByTitle: Record<string, string> = {
+    "CHARACTER WORLDS & FANTASY": "/projects/covers/character-worlds-fantasy.png",
+    "ILLUSTRATION / MANGA": "/projects/covers/illustration-manga-studies.png",
+    "KID SONG & GAME UI": "/projects/covers/kids-game-art-ui.png",
+    "STORYBOARD & BOOK ILLUSTRATION": "/projects/covers/visual-storytelling-publishing.png",
+  };
   return (
-    <div className="archive-cover archive-cover-story" aria-label="Visual Storytelling and Publishing project cover">
-      <span className="archive-cover-word">STORY / FRAME / PAGE</span>
-      <img className="archive-cover-storyboard archive-cover-storyboard-a" src="/projects/drive-curated/storyboard-frames/01.webp" alt="" />
-      <img className="archive-cover-storyboard archive-cover-storyboard-b" src="/projects/drive-curated/storyboard-frames/05.webp" alt="" />
-      <img className="archive-cover-book archive-cover-book-a" src="/projects/drive-curated/book-cover-illustration/01.webp" alt="" />
-      <img className="archive-cover-book archive-cover-book-b" src="/projects/drive-curated/book-cover-illustration/03.webp" alt="" />
+    <div
+      className="archive-cover provided-cover"
+      aria-label={`${title} project cover`}
+      style={{ height: "100%", width: "100%" }}
+    >
+      <img src={coverByTitle[title]} alt="" style={{ objectFit: "contain" }} />
     </div>
   );
 }
 
 export function MoodCardCover() {
   return (
-    <div className="mood-product-cover" aria-label="Mood — Better Daily mental wellness app">
-      <span className="mood-product-label">MENTAL WELLNESS · MOBILE APP</span>
-      <div className="mood-product-logo" style={{ mixBlendMode: "multiply" }}>
-        <img
-          src="/projects/mood/logo-system.png"
-          alt="Mood — Better Daily"
-          style={{ mixBlendMode: "multiply", width: "220%" }}
-        />
-      </div>
-      <div className="mood-product-phones" aria-hidden="true">
-        <img className="mood-product-phone mood-product-phone-left" src="/projects/mood/emotion.png" alt="" />
-        <img className="mood-product-phone mood-product-phone-center" src="/projects/mood/home.png" alt="" />
-        <img className="mood-product-phone mood-product-phone-right" src="/projects/mood/recommend.png" alt="" />
-      </div>
+    <div className="provided-cover" aria-label="Mood — Better Daily mental wellness app">
+      <img src="/projects/covers/mood.png" alt="" />
     </div>
   );
 }
 
 export function AuroradotCardCover() {
   return (
-    <div className="auroradot-card-cover" aria-label="AURORADOT emotional learning product screens">
-      <div className="auroradot-card-devices" aria-hidden="true">
-        <div className="auroradot-device auroradot-device-left">
-          <img src="/projects/auroradot/ui-10-choose-mode.png" alt="" />
-        </div>
-        <div className="auroradot-device auroradot-device-center">
-          <img src="/projects/auroradot/figma-parent-home.png" alt="" />
-        </div>
-        <div className="auroradot-device auroradot-device-right">
-          <img src="/projects/auroradot/ui-18-moment-feel.png" alt="" />
-        </div>
-        <div className="auroradot-device auroradot-device-top">
-          <img src="/projects/auroradot/ui-20-class-observe.png" alt="" />
-        </div>
-        <div className="auroradot-device auroradot-device-bottom">
-          <img src="/projects/auroradot/ui-09-welcome.png" alt="" />
-        </div>
-      </div>
+    <div className="provided-cover" aria-label="AURORADOT emotional learning product screens">
+      <img src="/projects/covers/auroradot.png" alt="" />
     </div>
   );
 }
 
 export function ProjectCard({ project }: { project: Project }) {
+  const isArchiveCover = archiveCoverTitles.has(project.title);
+  const displayTitle = archiveDisplayTitles[project.title] ?? project.title;
   const content = (
     <>
-      <div className={`gallery-card-visual tone-${project.tone}`}>
+      <div
+        className={`gallery-card-visual tone-${project.tone}${isArchiveCover ? " is-archive-cover" : ""}`}
+        style={{ aspectRatio: "1600 / 830" }}
+      >
         {project.title === "ABEECI" ? (
-          <div className="abeeci-card-cover" aria-label="Nhận diện thương hiệu ứng dụng học tập ABEECI">
+          <div className="abeeci-card-cover is-showcase-cover" aria-label="Nhận diện thương hiệu ứng dụng học tập ABEECI">
             <img
               aria-hidden="true"
               className="abeeci-card-cover-bg"
-              src="/projects/abeeci/abeeci-cover-2026.png"
+              src="/projects/abeeci/abeeci-cover-final-v7.png"
               alt=""
             />
             <div className="abeeci-card-cover-copy">
@@ -152,15 +105,9 @@ export function ProjectCard({ project }: { project: Project }) {
             <i>{project.category}</i>
           </div>
         )}
-        <span className="gallery-card-number">{project.number}</span>
-        {project.href && <span className="gallery-card-open">XEM CASE STUDY ↗</span>}
       </div>
-      <div className="gallery-card-meta">
-        <div>
-          <h3>{project.title}</h3>
-          <p>{project.type}</p>
-        </div>
-        <small>{project.category}</small>
+      <div className="gallery-card-meta is-title-only">
+        <h3>{displayTitle}</h3>
       </div>
     </>
   );
@@ -169,7 +116,7 @@ export function ProjectCard({ project }: { project: Project }) {
     const isExternal = project.href.startsWith("http");
     return (
       <a
-        aria-label={`Mở case study ${project.title}`}
+        aria-label={`Mở project ${project.title}`}
         className="gallery-card is-linked"
         data-cursor="MỞ"
         href={project.href}

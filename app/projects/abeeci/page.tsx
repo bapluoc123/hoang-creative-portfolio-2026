@@ -1,4 +1,5 @@
 import { CustomCursor } from "../../custom-cursor";
+import { BrandLogo } from "../../brand-logo";
 
 const uiScreens = [
   {
@@ -34,7 +35,7 @@ const uiScreens = [
   {
     src: "/projects/abeeci/ui-parent.png",
     label: "06 / PARENT",
-    title: "Quản lý phụ huynh",
+    title: "Dành cho phụ huynh",
     alt: "Màn hình quản lý dành cho phụ huynh của ABEECI",
   },
   {
@@ -163,7 +164,7 @@ export default function AbeeciCaseStudy() {
       <CustomCursor />
 
       <header className="fix-case-nav">
-        <a className="fix-case-brand" data-cursor="VỀ NHÀ" href="/">H+</a>
+        <a className="fix-case-brand" data-cursor="VỀ NHÀ" href="/" aria-label="Về trang chủ"><BrandLogo compact /></a>
         <span>02 / EDUCATION PRODUCT CASE STUDY</span>
         <a data-cursor="DỰ ÁN" href="/projects">← TẤT CẢ DỰ ÁN</a>
       </header>
@@ -181,7 +182,7 @@ export default function AbeeciCaseStudy() {
         <div className="abeeci-hero-meta">
           <div>
             <small>VAI TRÒ</small>
-            <strong>UX/UI Designer<br />Illustrator Artist</strong>
+            <strong>UX/UI Designer<br />Illustrator</strong>
           </div>
           <div>
             <small>PHẠM VI</small>
@@ -193,11 +194,11 @@ export default function AbeeciCaseStudy() {
           </div>
         </div>
 
-        <figure className="abeeci-hero-visual">
+        <figure className="abeeci-hero-visual is-showcase-cover">
           <img
             className="abeeci-hero-cover-bg"
-            src="/projects/abeeci/abeeci-cover-2026.png"
-            alt="Ba nhân vật ABEECI trong thế giới học tập giữa rừng tre"
+            src="/projects/abeeci/abeeci-cover-final-v7.png"
+            alt="Các màn hình học tập và nhân vật ABEECI"
           />
           <div className="abeeci-hero-cover-copy">
             <div className="abeeci-cover-brand">
@@ -333,8 +334,9 @@ export default function AbeeciCaseStudy() {
           <h2>A world built<br />from <em>honey.</em></h2>
           <div>
             <p>
-              Phần này chỉ trình bày tài sản hình ảnh độc lập: background, nhân vật và element.
-              Không trộn màn hình sản phẩm hay layout quảng cáo vào gallery minh họa.
+              Bộ tài sản hình ảnh được xây dựng riêng cho ABEECI, gồm background, nhân vật và các
+              thành phần minh họa. Các asset được thiết kế với khả năng tái sử dụng trong giao diện
+              và các nội dung khác của sản phẩm.
             </p>
             <ul>
               <li>Background tạo bối cảnh cho từng chủ đề học.</li>
@@ -372,7 +374,21 @@ export default function AbeeciCaseStudy() {
                   key={`${character.name}-${character.version}`}
                 >
                   <span>{String(index + 1).padStart(2, "0")}</span>
-                  <img src={character.src} alt={character.alt} loading="lazy" />
+                  <img
+                    src={character.src}
+                    alt={character.alt}
+                    loading="lazy"
+                    style={{
+                      position: "absolute",
+                      inset: "42px 14px 70px",
+                      width: "calc(100% - 28px)",
+                      height: "calc(100% - 112px)",
+                      objectFit: "contain",
+                      objectPosition: "center bottom",
+                      margin: 0,
+                      maxWidth: "none",
+                    }}
+                  />
                   <figcaption>
                     <strong>{character.name}</strong>
                     <small>{character.detail}</small>
@@ -449,12 +465,12 @@ export default function AbeeciCaseStudy() {
         </div>
         <div>
           <p>
-            ABEECI trở thành một hệ sinh thái học tập có cá tính thống nhất từ màn hình sản phẩm
-            đến nội dung truyền thông. Case study này thể hiện đồng thời tư duy sản phẩm và năng lực
-            xây dựng thế giới hình ảnh của mình.
+            ABEECI được xây dựng như một nền tảng học tập với trải nghiệm hình ảnh nhất quán, từ
+            giao diện sản phẩm đến các nội dung truyền thông. Trong dự án này, tôi tham gia phát triển
+            cả phần UX/UI và hệ thống hình ảnh cho sản phẩm.
           </p>
           <ul>
-            <li>Luồng học tập và kiểm soát phụ huynh có cấu trúc rõ ràng.</li>
+            <li>Các luồng có cấu trúc rõ ràng.</li>
             <li>Visual system dùng được xuyên suốt nhiều môn học và module.</li>
             <li>UX/UI và illustration cùng phục vụ một mục tiêu giáo dục.</li>
           </ul>

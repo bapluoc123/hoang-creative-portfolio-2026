@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AuroradotCardCover, MoodCardCover, ProjectCard } from "./project-card";
 import { allProjects, featuredProjects } from "./project-data";
+import { BrandLogo } from "./brand-logo";
 
 const archiveProjects = allProjects.filter((project) => !project.featured);
 
@@ -35,11 +36,10 @@ function CreatorFigure({ compact = false }: { compact?: boolean }) {
       <div className="figure-photo-frame">
         <img
           className="figure-photo"
-          src="/hoang-character-transparent-v5.png"
+          src="/hoang-character-transparent-v6.png"
           alt={compact ? "Nhân vật minh họa của Huy Hoàng" : "Huy Hoàng, nhà thiết kế UI/UX và họa sĩ 2D"}
         />
       </div>
-      <span className="figure-photo-note">NHÂN VẬT 01 / 2026</span>
       <span className="figure-photo-cross" aria-hidden="true">+</span>
     </div>
   );
@@ -48,6 +48,7 @@ function CreatorFigure({ compact = false }: { compact?: boolean }) {
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [logoOnDark, setLogoOnDark] = useState(false);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -100,6 +101,41 @@ export default function Home() {
         `${Math.min(1, window.scrollY / Math.max(window.innerHeight, 1))}`,
       );
       setScrolled(window.scrollY > 560);
+
+      const brand = document.querySelector<HTMLElement>(".brand");
+      if (brand) {
+        const rect = brand.getBoundingClientRect();
+        const sampleX = Math.min(window.innerWidth - 1, Math.max(0, rect.left + rect.width / 2));
+        const sampleY = Math.min(window.innerHeight - 1, Math.max(0, rect.top + rect.height / 2));
+        const surface = document.elementsFromPoint(sampleX, sampleY).find(
+          (element) => !element.closest(".site-header") && !element.closest(".cursor"),
+        );
+        let surfaceNode = surface instanceof HTMLElement ? surface : null;
+        let isDark = false;
+
+        while (surfaceNode) {
+          const color = window.getComputedStyle(surfaceNode).backgroundColor;
+          const channels = color.match(
+            /rgba?\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)(?:\s*[,/]\s*([\d.]+))?\s*\)/,
+          );
+
+          if (channels) {
+            const alpha = channels[4] === undefined ? 1 : Number(channels[4]);
+            if (alpha > 0.15) {
+              const red = Number(channels[1]);
+              const green = Number(channels[2]);
+              const blue = Number(channels[3]);
+              const luminance = (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255;
+              isDark = luminance < 0.42;
+              break;
+            }
+          }
+
+          surfaceNode = surfaceNode.parentElement;
+        }
+
+        setLogoOnDark(isDark);
+      }
       scrollFrame = 0;
     };
 
@@ -175,6 +211,7 @@ export default function Home() {
     window.addEventListener("pointerdown", onPointerDown);
     window.addEventListener("pointerup", onPointerUp);
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     window.addEventListener("keydown", onKeyDown);
     renderScroll();
 
@@ -183,6 +220,7 @@ export default function Home() {
       window.removeEventListener("pointerdown", onPointerDown);
       window.removeEventListener("pointerup", onPointerUp);
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
       window.removeEventListener("keydown", onKeyDown);
       if (cursorFrame) window.cancelAnimationFrame(cursorFrame);
       if (scrollFrame) window.cancelAnimationFrame(scrollFrame);
@@ -206,7 +244,13 @@ export default function Home() {
   return (
     <main>
       <div className="intro" aria-hidden="true">
-        <div className="intro-mark">H<span>+</span></div>
+        <img
+          className="intro-logo"
+          src="/brand/huy-hoang-logo.png"
+          alt=""
+          width="320"
+          height="211"
+        />
         <p>MAKING IDEAS MOVE</p>
       </div>
       <div className="cursor" style={{ opacity: 1 }} aria-hidden="true"><span className="cursor-label" /></div>
@@ -214,8 +258,7 @@ export default function Home() {
 
       <header className={scrolled ? "site-header is-scrolled" : "site-header"}>
         <a className="brand" href="#top" aria-label="Hoang — về đầu trang" onClick={closeMenu}>
-          <span className="brand-mark">H+</span>
-          <span className="brand-copy">HUY HOÀNG<br /><small>UI/UX DESIGNER · 2D ARTIST</small></span>
+          <BrandLogo light={logoOnDark} />
         </a>
 
         <nav className="desktop-nav" aria-label="Điều hướng chính">
@@ -250,7 +293,7 @@ export default function Home() {
       </div>
 
       <section className="hero paper-noise" id="top">
-        <div className="hero-ghost" aria-hidden="true">HOÀNG×SÁNGTẠO</div>
+        <div className="hero-ghost" aria-hidden="true">DESIGN × ART</div>
         <div className="hero-meta">UI/UX DESIGNER · 2D ARTIST<br />BASED IN VIETNAM</div>
         <div className="hero-kicker">Where Design Meets Illustration</div>
 
@@ -345,7 +388,6 @@ export default function Home() {
                 </span>
               ))}
             </div>
-            <span className="mission-character-label">NHÂN VẬT 01 / 2026</span>
           </div>
           <div className="mission-copy reveal">
             <p>
@@ -382,14 +424,10 @@ export default function Home() {
             const visual = project.title === "MOOD" ? (
               <div className="work-visual mood-work-visual">
                 <MoodCardCover />
-                <span className="work-index">{project.number}</span>
-                <span className="work-stamp">{project.stamp}</span>
               </div>
             ) : project.title === "AURORADOT" ? (
               <div className="work-visual auroradot-work-visual">
                 <AuroradotCardCover />
-                <span className="work-index">{project.number}</span>
-                <span className="work-stamp">{project.stamp}</span>
               </div>
             ) : project.title === "ELIHIGH KIDS" ? (
               <div className="work-visual elihigh-work-visual">
@@ -398,13 +436,10 @@ export default function Home() {
                   src="/projects/drive-curated/elihigh-kids/behance-cover.jpg"
                   alt="Ảnh đại diện dự án ELIHIGH KIDS"
                 />
-                <span className="work-index">{project.number}</span>
               </div>
             ) : (
               <div className="work-visual" style={{ backgroundImage: `url("${project.image}")` }}>
                 <div className="work-visual-grid" />
-                <span className="work-index">{project.number}</span>
-                <span className="work-stamp">{project.stamp}</span>
                 <span className="work-letter">{project.title.charAt(0)}</span>
                 <span className="work-orbit" />
                 <span className="work-dot" />
@@ -474,7 +509,6 @@ export default function Home() {
           <a className="home-project-more" data-cursor="XEM THÊM" href="/projects">
             <span>
               Xem toàn bộ dự án
-              <small>Kho lưu trữ được thiết kế để mở rộng lên 100+ dự án</small>
             </span>
             <b>{String(allProjects.length).padStart(2, "0")} PROJECTS&nbsp;&nbsp;→</b>
           </a>
@@ -576,7 +610,14 @@ export default function Home() {
           <div className="social-links">
             <a href="https://www.behance.net/bapluoclol34a6" target="_blank" rel="noreferrer">Behance ↗</a>
             <a href="https://www.artstation.com/kidon" target="_blank" rel="noreferrer">ArtStation ↗</a>
-            <a href="mailto:hoangbh511999@gmail.com">Email ↗</a>
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=hoangbh511999@gmail.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Gửi email tới hoangbh511999@gmail.com"
+            >
+              Email ↗
+            </a>
           </div>
         </div>
         <footer>
