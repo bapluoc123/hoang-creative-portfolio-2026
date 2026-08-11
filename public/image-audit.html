@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kiểm tra hình ảnh portfolio</title>
+  <style>
+    :root { color-scheme: light; font-family: Arial, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #ecece8; color: #111; }
+    header { position: sticky; top: 0; z-index: 5; padding: 18px 22px; background: #111; color: #fff; }
+    h1 { margin: 0 0 12px; font-size: 22px; }
+    .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    select, button { min-height: 38px; border: 0; border-radius: 999px; padding: 0 16px; font: inherit; }
+    select { background: #fff; color: #111; }
+    button { cursor: pointer; background: #fff238; color: #111; font-weight: 700; }
+    button.secondary { background: #fff; }
+    button:disabled { cursor: wait; opacity: .55; }
+    main { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 16px; padding: 16px; }
+    .panel { border: 1px solid #c9c9c3; background: #fff; }
+    .panel-title { display: flex; justify-content: space-between; gap: 12px; padding: 12px 14px; border-bottom: 1px solid #ddd; font-size: 13px; }
+    #stage { position: relative; min-height: 620px; overflow: auto; background: #d7d7d2; }
+    #preview-shell { position: relative; transform-origin: top left; background: #fff; box-shadow: 0 12px 50px #0003; }
+    iframe { position: absolute; inset: 0; border: 0; background: #fff; }
+    #summary { font-weight: 700; }
+    #summary.pass { color: #15743d; }
+    #summary.fail { color: #b3261e; }
+    #issues { margin: 0; padding: 12px 14px 16px 32px; font-size: 13px; line-height: 1.5; }
+    #issues li + li { margin-top: 8px; }
+    .results-wrap { max-height: 70vh; overflow: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th, td { padding: 9px 8px; border-bottom: 1px solid #e5e5df; text-align: left; vertical-align: top; }
+    tbody tr { cursor: pointer; }
+    tbody tr:hover { background: #f7f7f2; }
+    .pass-pill, .fail-pill { display: inline-block; border-radius: 999px; padding: 3px 8px; font-weight: 700; }
+    .pass-pill { background: #dff4e5; color: #136b36; }
+    .fail-pill { background: #ffe0dc; color: #a32018; }
+    #progress { margin-left: auto; font-size: 12px; color: #ddd; }
+    @media (max-width: 1000px) {
+      main { grid-template-columns: 1fr; }
+      .results-wrap { max-height: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Kiểm tra hình ảnh portfolio</h1>
+    <div class="controls">
+      <select id="route" aria-label="Chọn trang"></select>
+      <select id="viewport" aria-label="Chọn kích thước"></select>
+      <button id="check-current">Kiểm tra trang này</button>
+      <button class="secondary" id="check-all">Rà soát toàn bộ</button>
+      <span id="progress">Sẵn sàng</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <div class="panel-title">
+        <span id="preview-label">Xem trước</span>
+        <span id="summary">Chưa kiểm tra</span>
+      </div>
+      <div id="stage"><div id="preview-shell"><iframe id="preview" title="Xem trước website"></iframe></div></div>
+    </section>
+
+    <aside class="panel">
+      <div class="panel-title"><strong>Kết quả</strong><span id="result-count">0 lượt</span></div>
+      <ol id="issues"><li>Chọn một trang hoặc bấm “Rà soát toàn bộ”.</li></ol>
+      <div class="results-wrap">
+        <table>
+          <thead><tr><th>Trang</th><th>Kích thước</th><th>Trạng thái</th></tr></thead>
+          <tbody id="results"></tbody>
+        </table>
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    const routes = [
+      "/",
+      "/projects",
+      "/projects/fix-now",
+      "/projects/mood",
+      "/projects/abeeci",
+      "/projects/auroradot",
+      "/projects/elihigh-kids",
+      "/projects/musaic",
+      "/projects/character-worlds-fantasy",
+      "/projects/illustration-manga-studies",
+      "/projects/kids-game-art-ui",
+      "/projects/visual-storytelling-publishing",
+    ];
+
+    const viewports = [
+      { label: "390 × 844 — Mobile", width: 390, height: 844 },
+      { label: "768 × 1024 — Tablet", width: 768, height: 1024 },
+      { label: "1180 × 820 — Laptop nhỏ", width: 1180, height: 820 },
+      { label: "1440 × 900 — Desktop", width: 1440, height: 900 },
+      { label: "1920 × 1080 — Desktop rộng", width: 1920, height: 1080 },
+      { label: "2560 × 1440 — Màn hình rất rộng", width: 2560, height: 1440 },
+    ];
+
+    const routeSelect = document.querySelector("#route");
+    const viewportSelect = document.querySelector("#viewport");
+    const frame = document.querySelector("#preview");
+    const stage = document.querySelector("#stage");
+    const shell = document.querySelector("#preview-shell");
+    const summary = document.querySelector("#summary");
+    const issuesList = document.querySelector("#issues");
+    const resultsBody = document.querySelector("#results");
+    const progress = document.querySelector("#progress");
+    const currentButton = document.querySelector("#check-current");
+    const allButton = document.querySelector("#check-all");
+    const assetChecks = new Map();
+    const auditResults = [];
+
+    for (const route of routes) {
+      const option = document.createElement("option");
+      option.value = route;
+      option.textContent = route;
+      routeSelect.append(option);
+    }
+    routeSelect.value = "/projects/elihigh-kids";
+
+    viewports.forEach((viewport, index) => {
+      const option = document.createElement("option");
+      option.value = String(index);
+      option.textContent = viewport.label;
+      viewportSelect.append(option);
+    });
+    viewportSelect.value = "3";
+
+    function viewportValue() {
+      return viewports[Number(viewportSelect.value)];
+    }
+
+    function resizePreview() {
+      const viewport = viewportValue();
+      const availableWidth = Math.max(320, stage.clientWidth - 32);
+      const scale = Math.min(1, availableWidth / viewport.width);
+      shell.style.width = `${viewport.width}px`;
+      shell.style.height = `${viewport.height}px`;
+      shell.style.transform = `scale(${scale})`;
+      stage.style.height = `${Math.max(620, viewport.height * scale + 32)}px`;
+      frame.style.width = `${viewport.width}px`;
+      frame.style.height = `${viewport.height}px`;
+      document.querySelector("#preview-label").textContent = `${routeSelect.value} · ${viewport.width}×${viewport.height}`;
+    }
+
+    function loadPreview(route) {
+      return new Promise((resolve, reject) => {
+        const timeout = setTimeout(() => reject(new Error("Trang tải quá lâu")), 12000);
+        frame.onload = () => {
+          clearTimeout(timeout);
+          setTimeout(resolve, 250);
+        };
+        frame.src = `${route}${route.includes("?") ? "&" : "?"}image-audit=${Date.now()}`;
+      });
+    }
+
+    async function assetExists(src) {
+      if (!src || src.startsWith("data:") || src.startsWith("blob:")) return true;
+      const absolute = new URL(src, location.origin).href;
+      if (!assetChecks.has(absolute)) {
+        assetChecks.set(absolute, fetch(absolute, { method: "HEAD", cache: "no-store" })
+          .then(response => response.ok)
+          .catch(() => false));
+      }
+      return assetChecks.get(absolute);
+    }
+
+    async function inspectFrame(route, viewport) {
+      const win = frame.contentWindow;
+      const doc = frame.contentDocument;
+      const issues = [];
+      await doc.fonts?.ready;
+
+      const images = [...doc.images];
+      const assetStates = await Promise.all(images.map(image => assetExists(image.currentSrc || image.src)));
+      assetStates.forEach((ok, index) => {
+        if (!ok) issues.push(`Ảnh không tải được: ${images[index].getAttribute("src") || "không rõ nguồn"}`);
+      });
+
+      if (doc.documentElement.scrollWidth > win.innerWidth + 2) {
+        issues.push(`Trang bị tràn ngang ${doc.documentElement.scrollWidth - win.innerWidth}px`);
+      }
+
+      if (route.startsWith("/projects/")) {
+        const metadataLabels = [...doc.querySelectorAll("small, dt")];
+        const roleLabels = metadataLabels.filter(label => label.textContent.trim() === "VAI TRÒ");
+        const scopeLabels = metadataLabels.filter(label => label.textContent.trim() === "PHẠM VI");
+        const duplicateLabels = [...doc.querySelectorAll("dt")]
+          .filter(label => ["TYPE", "FIELD"].includes(label.textContent.trim()));
+        const isVisible = label => {
+          const rect = label.getBoundingClientRect();
+          return rect.width > 0 && rect.height > 0;
+        };
+
+        if (roleLabels.length !== 1) {
+          issues.push(`Project has ${roleLabels.length} role sections instead of 1`);
+        } else {
+          const roleRect = roleLabels[0].getBoundingClientRect();
+          if (roleRect.width === 0 || roleRect.height === 0) {
+            issues.push("Project role is hidden at this viewport");
+          }
+        }
+        if (scopeLabels.some(isVisible)) issues.push("Project still shows scope metadata");
+        if (duplicateLabels.some(isVisible)) issues.push("Project still shows TYPE/FIELD metadata");
+      }
+
+      for (const image of doc.querySelectorAll(".work-visual .provided-cover > img")) {
+        const wrapper = image.closest(".provided-cover");
+        const imageRect = image.getBoundingClientRect();
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const covers = imageRect.left <= wrapperRect.left + 1
+          && imageRect.top <= wrapperRect.top + 1
+          && imageRect.right >= wrapperRect.right - 1
+          && imageRect.bottom >= wrapperRect.bottom - 1;
+        if (!covers) issues.push("Cover không phủ kín khung (lộ nền ở cạnh ảnh)");
+        if (getComputedStyle(image).objectFit !== "cover") issues.push("Cover không dùng chế độ cover");
+      }
+
+      for (const image of doc.querySelectorAll(".gallery-card-visual .provided-cover > img")) {
+        const wrapper = image.closest(".provided-cover");
+        const imageRect = image.getBoundingClientRect();
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const matchesFrame = Math.abs(imageRect.left - wrapperRect.left) <= 1
+          && Math.abs(imageRect.top - wrapperRect.top) <= 1
+          && Math.abs(imageRect.width - wrapperRect.width) <= 1
+          && Math.abs(imageRect.height - wrapperRect.height) <= 1;
+        if (!matchesFrame) issues.push("Cover trong visual archive không co đúng kích thước card");
+      }
+
+      if (route === "/" && viewport.width >= 1920) {
+        const words = [...doc.querySelectorAll(".hero-title .hero-word")];
+        const titleRects = words.map(word => word.getBoundingClientRect());
+        const titleLeft = Math.min(...titleRects.map(rect => rect.left));
+        const titleRight = Math.max(...titleRects.map(rect => rect.right));
+        const titleCenterOffset = Math.abs((titleLeft + titleRight) / 2 - win.innerWidth / 2);
+        if (words.length !== 3 || titleCenterOffset > 2) {
+          issues.push(`Hero title is ${Math.round(titleCenterOffset)}px off center`);
+        }
+
+        const figure = doc.querySelector(".hero-figure-wrap");
+        if (figure) {
+          const figureRect = figure.getBoundingClientRect();
+          const figureCenterOffset = Math.abs(
+            (figureRect.left + figureRect.right) / 2 - doc.documentElement.clientWidth / 2,
+          );
+          if (figureCenterOffset > 1) issues.push("Hero character is off center");
+        }
+      }
+
+      if (route === "/projects/elihigh-kids") {
+        const gallery = doc.querySelector('.collection-gallery[aria-label*="ELIHIGH KIDS"]');
+        const shots = gallery ? [...gallery.querySelectorAll(".collection-shot")] : [];
+        if (shots.length !== 18) issues.push(`Gallery Elihigh có ${shots.length}/18 ảnh`);
+        for (const shot of shots) {
+          const image = shot.querySelector("img");
+          const caption = shot.querySelector("figcaption");
+          if (image && getComputedStyle(image).position !== "static") {
+            issues.push("Ảnh Elihigh chưa trở về tỷ lệ dọc tự nhiên");
+            break;
+          }
+          if (image && getComputedStyle(image).objectFit !== "contain") {
+            issues.push("Ảnh Elihigh đang bị cắt bằng cover");
+            break;
+          }
+          if (caption && getComputedStyle(caption).position !== "static") {
+            issues.push("Caption Elihigh vẫn nằm đè lên ảnh");
+            break;
+          }
+        }
+      }
+
+      return { route, viewport: `${viewport.width}×${viewport.height}`, issues: [...new Set(issues)] };
+    }
+
+    function showResult(result) {
+      const passed = result.issues.length === 0;
+      summary.textContent = passed ? "ĐẠT" : `${result.issues.length} lỗi`;
+      summary.className = passed ? "pass" : "fail";
+      issuesList.innerHTML = "";
+      const items = passed ? ["Ảnh tải được, không tràn ngang, cover và gallery đúng chế độ."] : result.issues;
+      for (const issue of items) {
+        const item = document.createElement("li");
+        item.textContent = issue;
+        issuesList.append(item);
+      }
+    }
+
+    function appendResult(result) {
+      auditResults.push(result);
+      const row = document.createElement("tr");
+      row.innerHTML = `<td>${result.route}</td><td>${result.viewport}</td><td><span class="${result.issues.length ? "fail-pill" : "pass-pill"}">${result.issues.length ? `${result.issues.length} lỗi` : "Đạt"}</span></td>`;
+      row.addEventListener("click", async () => {
+        routeSelect.value = result.route;
+        viewportSelect.value = String(viewports.findIndex(viewport => `${viewport.width}×${viewport.height}` === result.viewport));
+        resizePreview();
+        await loadPreview(result.route);
+        showResult(result);
+      });
+      resultsBody.append(row);
+      document.querySelector("#result-count").textContent = `${auditResults.length} lượt`;
+    }
+
+    async function checkCurrent({ record = true } = {}) {
+      const route = routeSelect.value;
+      const viewport = viewportValue();
+      resizePreview();
+      progress.textContent = `Đang kiểm tra ${route}`;
+      await loadPreview(route);
+      const result = await inspectFrame(route, viewport);
+      showResult(result);
+      if (record) appendResult(result);
+      progress.textContent = result.issues.length ? "Có lỗi cần xem" : "Đã kiểm tra";
+      return result;
+    }
+
+    async function checkAll() {
+      currentButton.disabled = true;
+      allButton.disabled = true;
+      resultsBody.innerHTML = "";
+      auditResults.length = 0;
+      let completed = 0;
+      const total = routes.length * viewports.length;
+      try {
+        for (const route of routes) {
+          routeSelect.value = route;
+          for (let index = 0; index < viewports.length; index += 1) {
+            viewportSelect.value = String(index);
+            resizePreview();
+            progress.textContent = `${completed + 1}/${total} · ${route}`;
+            await loadPreview(route);
+            const result = await inspectFrame(route, viewports[index]);
+            appendResult(result);
+            completed += 1;
+          }
+        }
+        const failures = auditResults.filter(result => result.issues.length);
+        summary.textContent = failures.length ? `${failures.length}/${total} lượt có lỗi` : `${total}/${total} lượt đạt`;
+        summary.className = failures.length ? "fail" : "pass";
+        progress.textContent = failures.length ? "Hoàn tất · cần xem lỗi" : "Hoàn tất · toàn bộ đạt";
+        issuesList.innerHTML = `<li>${failures.length ? `Có ${failures.length} lượt cần kiểm tra.` : "Tất cả route và kích thước đều đạt kiểm tra tự động."}</li>`;
+      } catch (error) {
+        summary.textContent = "Không hoàn tất";
+        summary.className = "fail";
+        issuesList.innerHTML = `<li>${error.message}</li>`;
+        progress.textContent = "Đã dừng";
+      } finally {
+        currentButton.disabled = false;
+        allButton.disabled = false;
+      }
+    }
+
+    routeSelect.addEventListener("change", () => checkCurrent({ record: false }));
+    viewportSelect.addEventListener("change", () => checkCurrent({ record: false }));
+    currentButton.addEventListener("click", () => checkCurrent());
+    allButton.addEventListener("click", checkAll);
+    window.addEventListener("resize", resizePreview);
+    resizePreview();
+    checkCurrent({ record: false });
+  </script>
+</body>
+</html>
