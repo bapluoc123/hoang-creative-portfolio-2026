@@ -1,0 +1,539 @@
+/*
+ * Responsive guardrails shared by the portfolio and every case study.
+ *
+ * The original art direction intentionally uses full-bleed colour fields,
+ * but its content used to keep scaling with the viewport forever. These
+ * rules preserve the full-bleed backgrounds while bounding the readable
+ * stage, closing the tablet breakpoint gap, and preventing gallery frames
+ * from becoming several thousand pixels tall on large displays.
+ */
+
+:root {
+  --portfolio-content-max: 1800px;
+  --portfolio-gutter: clamp(18px, 4vw, 72px);
+  --portfolio-wide-gutter: max(
+    var(--portfolio-gutter),
+    calc((100vw - var(--portfolio-content-max)) / 2)
+  );
+}
+
+/* Homepage cards use the same supplied cover component as the archive. */
+.work-visual .provided-cover > img {
+  display: block;
+  height: 100%;
+  inset: 0;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  width: 100%;
+}
+
+.work-info h3 {
+  line-height: .92;
+}
+
+.work > .section-heading,
+.work > .work-intro,
+.work > .work-list,
+.work > .home-project-gallery {
+  margin-inline: auto;
+  max-width: var(--portfolio-content-max);
+  width: 100%;
+}
+
+.experience-list,
+.education-grid,
+.service-list,
+.contact-main {
+  margin-inline: auto;
+  max-width: var(--portfolio-content-max);
+  width: 100%;
+}
+
+/* Keep image-led collections substantial without tying height to 4K width. */
+.collection-gallery {
+  margin-inline: auto;
+  max-width: var(--portfolio-content-max);
+  width: 100%;
+}
+
+.collection-shot {
+  min-height: clamp(360px, 48vw, 900px);
+}
+
+.collection-shot.is-featured {
+  min-height: clamp(520px, 72vw, 1200px);
+}
+
+/* The two supplied hero covers keep a useful mobile crop. */
+@media (max-width: 760px) {
+  .mood-hero-stage.project-new-hero-cover,
+  .aurora-hero-stage.project-new-hero-cover {
+    aspect-ratio: 4 / 3;
+    height: auto;
+  }
+
+  .collection-shot,
+  .collection-shot.is-featured {
+    min-height: clamp(360px, 110vw, 640px);
+  }
+}
+
+/* Center the composition on large and ultrawide monitors. */
+@media (min-width: 1800px) {
+  .site-header {
+    padding-inline: var(--portfolio-wide-gutter);
+  }
+
+  .hero {
+    height: clamp(760px, 100svh, 1200px);
+  }
+
+  .hero-meta {
+    left: 50%;
+  }
+
+  .hero-ghost,
+  .hero-kicker,
+  .hero-statement {
+    left: calc(50% - 840px);
+  }
+
+  .hero-word-one {
+    left: calc(50% - 840px);
+  }
+
+  .hero-word-two {
+    left: calc(50% - 540px);
+  }
+
+  .hero-word-three {
+    left: calc(50% + 100px);
+  }
+
+  :is(.about, .mission, .work, .experience, .education, .contact) {
+    padding-left: var(--portfolio-wide-gutter);
+    padding-right: var(--portfolio-wide-gutter);
+  }
+
+  .services-intro,
+  .service-content {
+    padding-left: var(--portfolio-wide-gutter);
+    padding-right: var(--portfolio-wide-gutter);
+  }
+
+  .about-copy,
+  .mission-body {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--portfolio-content-max);
+    width: 100%;
+  }
+
+  :is(
+    .mood-hero,
+    .mood-premise,
+    .mood-strategy,
+    .mood-journey,
+    .mood-features,
+    .mood-language,
+    .mood-onboarding,
+    .mood-outcome,
+    .aurora-hero,
+    .aurora-manifesto,
+    .aurora-overview,
+    .aurora-flow,
+    .aurora-chapter,
+    .aurora-kid,
+    .aurora-ux-atlas,
+    .aurora-system,
+    .aurora-illustration-showcase,
+    .aurora-outcome,
+    .fix-case-hero,
+    .fix-case-manifesto,
+    .fix-case-overview,
+    .fix-product-stage,
+    .fix-case-problem,
+    .fix-case-research,
+    .fix-ai-story,
+    .fix-case-flow,
+    .fix-case-wireframe,
+    .fix-case-system,
+    .fix-final-composition,
+    .fix-case-outcome,
+    .abeeci-hero,
+    .abeeci-split-intro,
+    .abeeci-ux,
+    .abeeci-ux-outcome,
+    .abeeci-art,
+    .abeeci-bridge,
+    .abeeci-outcome,
+    .collection-project-intro,
+    .elihigh-brand,
+    .elihigh-world,
+    .elihigh-mascots,
+    .elihigh-learning-system,
+    .collection-work-heading,
+    .collection-chapter-heading,
+    .collection-next,
+    .musaic-hero,
+    .musaic-overview,
+    .musaic-flow,
+    .musaic-experience,
+    .musaic-system,
+    .musaic-share,
+    .musaic-outcome
+  ) {
+    padding-left: var(--portfolio-wide-gutter);
+    padding-right: var(--portfolio-wide-gutter);
+  }
+}
+
+/* A compact menu is safer than squeezing the desktop pill at this width. */
+@media (max-width: 1080px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .menu-toggle,
+  .site-header.is-scrolled .menu-toggle {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  .hero-meta {
+    display: none;
+  }
+}
+
+/* Shared tablet pass for bespoke project pages. */
+@media (min-width: 761px) and (max-width: 1024px) {
+  .mood-hero-copy,
+  .mood-premise,
+  .mood-section-heading,
+  .mood-onboarding {
+    grid-template-columns: 1fr;
+  }
+
+  .mood-hero-copy p,
+  .mood-section-heading > p {
+    grid-column: 1;
+    max-width: 46rem;
+  }
+
+  .mood-strategy-grid,
+  .mood-language-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mood-strategy-grid article:last-child,
+  .mood-language-grid article:last-child {
+    border-right: 0;
+    grid-column: 1 / -1;
+    min-height: 20rem;
+  }
+
+  .mood-journey-screens {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mood-feature-list article {
+    gap: 4rem;
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .mood-feature-list article:nth-child(even) .mood-feature-copy {
+    order: 0;
+  }
+
+  .mood-outcome > div {
+    grid-template-columns: 1fr;
+  }
+
+  .aurora-hero-copy,
+  .aurora-manifesto,
+  .aurora-section-heading,
+  .aurora-flow,
+  .aurora-chapter,
+  .aurora-kid-heading,
+  .aurora-illustration-intro,
+  .aurora-atlas-heading,
+  .aurora-teen-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .aurora-hero-copy p,
+  .aurora-section-heading > p,
+  .aurora-kid-heading h2,
+  .aurora-kid-heading > p,
+  .aurora-illustration-intro h2,
+  .aurora-illustration-intro > p,
+  .aurora-teen-heading h2,
+  .aurora-teen-heading p {
+    grid-column: 1;
+  }
+
+  .aurora-chapter {
+    min-height: 0;
+  }
+
+  .aurora-chapter h2,
+  .aurora-chapter-ux h2,
+  .aurora-chapter-illustration h2 {
+    font-size: clamp(4.5rem, 12vw, 7.5rem);
+    grid-column: 1;
+    grid-row: auto;
+    line-height: .92;
+    white-space: normal;
+  }
+
+  .aurora-chapter > div,
+  .aurora-chapter > p,
+  .aurora-chapter-illustration > div,
+  .aurora-chapter-illustration > p {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+    max-width: 46rem;
+    min-width: 0;
+  }
+
+  .aurora-kid-gallery,
+  .aurora-audiences,
+  .aurora-system-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .aurora-screen-grid,
+  .aurora-element-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .aurora-screen-card:nth-child(n),
+  .aurora-element-grid figure:nth-child(n) {
+    transform: none;
+  }
+
+  .aurora-system-grid article:last-child {
+    border-top: 1px solid rgb(23 32 25 / 22%);
+    grid-column: 1 / -1;
+  }
+
+  .aurora-outcome > div {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ABEECI already has a strong phone layout; only close its tablet gap. */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .abeeci-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .abeeci-section-heading,
+  .abeeci-art-heading,
+  .abeeci-outcome {
+    grid-template-columns: 1fr;
+  }
+
+  .abeeci-ui-stage {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .abeeci-components-heading,
+  .abeeci-learning-heading {
+    grid-template-columns: .25fr 1fr;
+  }
+
+  .abeeci-components-heading p,
+  .abeeci-learning-heading p {
+    grid-column: 2;
+  }
+
+  .abeeci-character-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .abeeci-learning-assets-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .abeeci-learning-assets-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Collection/Elihigh: bridge the 721–1024px range. */
+@media (min-width: 721px) and (max-width: 1024px) {
+  .collection-case-hero,
+  .collection-project-intro,
+  .elihigh-brand,
+  .collection-case-overview,
+  .collection-case-outcome {
+    grid-template-columns: 1fr;
+  }
+
+  .collection-project-intro > div,
+  .collection-case-hero .fix-case-hero-visual {
+    grid-column: 1;
+  }
+
+  .collection-project-intro > div {
+    max-width: 46rem;
+  }
+
+  .elihigh-world-heading,
+  .elihigh-mascot-copy,
+  .elihigh-learning-heading,
+  .collection-chapter-heading {
+    grid-template-columns: .25fr 1fr;
+  }
+
+  .collection-chapter-heading h3,
+  .collection-chapter-heading > div {
+    grid-column: 2;
+  }
+
+  .elihigh-world-grid,
+  .elihigh-mascot-grid,
+  .elihigh-subject-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* FIX NOW's phone mockups were absolutely positioned for desktop only. */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .fix-case-hero,
+  .fix-case-overview,
+  .fix-product-stage {
+    grid-template-columns: 1fr;
+  }
+
+  .fix-product-stage {
+    min-height: 0;
+  }
+
+  .fix-product-stage-screens {
+    min-height: 780px;
+  }
+
+  .fix-ai-steps,
+  .fix-ai-notes,
+  .fix-token-story {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .fix-product-stage,
+  .fix-final-composition {
+    display: grid;
+    gap: 48px;
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .fix-product-stage-screens {
+    display: grid;
+    gap: 48px;
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .fix-product-stage .fix-phone,
+  .fix-final-composition .fix-phone {
+    inset: auto;
+    justify-self: center;
+    margin: 0;
+    position: relative;
+    transform: none;
+    width: min(100%, 350px);
+  }
+
+  .fix-ai-steps,
+  .fix-ai-notes,
+  .fix-token-story {
+    grid-template-columns: 1fr;
+  }
+
+  .fix-ai-steps .fix-phone:nth-child(n) {
+    margin-top: 0;
+  }
+
+  .fix-final-composition::after {
+    display: none;
+  }
+}
+
+/* Musaic's desktop breakpoint started at 900px, leaving a narrow squeeze. */
+@media (min-width: 901px) and (max-width: 1024px) {
+  .musaic-hero-copy,
+  .musaic-overview,
+  .musaic-section-heading,
+  .musaic-experience-list article,
+  .musaic-share,
+  .musaic-outcome {
+    grid-template-columns: 1fr;
+  }
+
+  .musaic-hero-copy h1 {
+    font-size: clamp(5rem, 13vw, 8rem);
+    white-space: normal;
+  }
+
+  .musaic-screen-gallery.is-four,
+  .musaic-screen-gallery.is-three {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .musaic-hero-copy h1 {
+    white-space: normal;
+  }
+}
+
+/* Keep display headlines inside the narrow canvas instead of relying on
+   page-level overflow clipping to hide their last letters. */
+@media (max-width: 760px) {
+  .aurora-hero-copy,
+  .aurora-hero-copy > * {
+    min-width: 0;
+  }
+
+  .aurora-hero h1 {
+    font-size: clamp(4.35rem, 20vw, 6rem);
+    letter-spacing: -0.045em;
+    max-width: 100%;
+  }
+
+  .aurora-chapter-illustration h2 {
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 640px) {
+  .abeeci-hero h1 {
+    font-size: clamp(4.6rem, 22vw, 6.5rem);
+    letter-spacing: -0.075em;
+    max-width: 100%;
+  }
+
+  .fix-product-stage-copy,
+  .fix-product-stage-screens,
+  .fix-final-copy {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .fix-product-stage-copy h2,
+  .fix-final-copy h2 {
+    overflow-wrap: anywhere;
+  }
+}
